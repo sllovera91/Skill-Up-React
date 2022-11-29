@@ -17,6 +17,18 @@ const userSlice = createSlice({
   reducers: {
     resetUserState: () => {
       return userSliceEmptyState;
+    },
+    setUser: (state, action) => {
+      return {
+        ...state.jwt,
+        user: action.payload
+      };
+    },
+    setJwt: (state, action) => {
+      return {
+        ...state.user,
+        jwt: action.payload
+      };
     }
   }
 });

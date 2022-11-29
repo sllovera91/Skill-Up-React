@@ -8,6 +8,9 @@ const transactionsSlice = createSlice({
   reducers: {
     resetTransactionsState: () => {
       return transactionsSliceEmptyState;
+    },
+    setTransactions: (_, action) => {
+      return action.payload;
     }
   }
 });
