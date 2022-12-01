@@ -1,5 +1,4 @@
-
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink } from "react-router-dom";
 
 export const Navbar = () => {
   return (
@@ -7,11 +6,11 @@ export const Navbar = () => {
     <div className="container-fluid">
 
     <Link className="navbar-brand" to="/">
-      <img src="https://res.cloudinary.com/dzko626wf/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1669736491/ra6y0vlvmxqeo4valime.jpg"  alt="AlkyBank"/>
+      <img src="https://res.cloudinary.com/dzko626wf/image/upload/c_pad,b_auto:predominant,fl_preserve_transparency/v1669736491/ra6y0vlvmxqeo4valime.jpg" alt="AlkyBank"/>
     </Link>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
+    <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span className="navbar-toggler-icon"></span>
     </button>
 
     <div className="collapse navbar-collapse" id="menu">
@@ -39,6 +38,6 @@ export const Navbar = () => {
 
     </div>
    </nav>
-    
-  )
-}
+
+  );
+};
