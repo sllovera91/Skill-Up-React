@@ -1,16 +1,12 @@
-import React from "react";
 import { Outlet } from "react-router-dom";
-import Footer from "../../components/footer/Footer";
-import NavBar from "../../components/NavBar";
+import { Footer, Navbar } from "../../components/";
 
-const WithNavBar = () => {
+export const WithNavBar = () => {
   return (
     <>
-      <NavBar />
+      <Navbar />
       <Outlet />
       <Footer/>
     </>
   );
 };
-
-export default WithNavBar;
