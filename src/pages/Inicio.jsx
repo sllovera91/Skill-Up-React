@@ -1,13 +1,12 @@
 import React from "react";
+import { Title } from "../components/Title";
 
 export const Inicio = () => {
   return (
     <div className="App">
     <header className="App-header">
       <img src={"./alkemy_logo.svg"} className="App-logo" alt="logo" />
-      <h1>
-        Bienvenidos a AlkyBank
-      </h1>
+      <Title size={"h1"}>Bienvenidos a AlkyBank</Title>
 
       <hr/>
 
