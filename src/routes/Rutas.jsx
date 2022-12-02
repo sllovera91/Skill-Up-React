@@ -1,10 +1,10 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Login } from "../components/login/Login";
+import { Login } from "../pages/login/Login";
 import { WithNavBar } from "./layout/WithNavBar";
 import { Inicio, Balance, CargaSaldo, EnvioDinero, Gastos, Movimientos, Error404 } from "../pages";
 
 export const Rutas = () => {
-  const status = "validado";
+  const status = "no-validado";
 
   return (
   <BrowserRouter>
