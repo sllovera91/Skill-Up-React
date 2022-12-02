@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/alkemy_logo.svg";
+import styles from "./Login.module.css";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
@@ -36,12 +37,12 @@ export const Login = () => {
     <section className="h-100">
       <div className="container h-100">
         <div className="row justify-content-sm-center h-100">
-          <div className="col-xxl-4 col-xl-5 col-lg-5 col-md-7 col-sm-9">
+          <div className="col-xxl-5 col-xl-6 col-lg-7 col-md-9 col-sm-12">
             <div className="text-center my-5">
               <img src={logo} alt="AlkyBank" width="200"/>
             </div>
-            <div className="card shadow-lg">
-              <div className="card-body p-5">
+            <div className={`card shadow-lg ${styles.FormCard}`}>
+              <div className={`card-body ${styles.FormContent}`}>
                 <h1 className="fs-4 card-title fw-bold mb-4">Iniciar sesión</h1>
                 <form method="POST" className="needs-validation" noValidate autoComplete="off" id="loginform" onSubmit={e => handleSubmit(e)}>
                   <div className="mb-3">
@@ -52,11 +53,11 @@ export const Login = () => {
                     </div>
                   </div>
                   <div className="mb-3">
-                    <div className="mb-2 w-100">
-                      <label className="text-muted" htmlFor="password">Password *</label>
-                      <a href="#" className="float-end">
+                    <div className={`mb-2 w-100 ${styles.PasswordLabel}`}>
+                      <label className="text-muted" htmlFor="password">Contraseña *</label>
+                      <Link href="/cambio-contraseña">
                         ¿Olvidaste tu contraseña?
-                      </a>
+                      </Link>
                     </div>
                     <input id="password" type="password" className="form-control" name="password" required autoComplete="true" onChange={e => handleInputChange(e)}/>
                     <div className="invalid-feedback">
@@ -76,7 +77,7 @@ export const Login = () => {
               </div>
               <div className="card-footer py-3 border-0">
                 <div className="text-center">
-                  ¿No tienes una cuenta? <Link to="#" className="text-dark">Regístrate</Link>
+                  ¿No tienes una cuenta? <Link to="/registro" className="text-dark">Regístrate</Link>
                 </div>
               </div>
             </div>
