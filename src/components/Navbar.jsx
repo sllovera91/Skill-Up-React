@@ -25,7 +25,7 @@ export const Navbar = () => {
           <NavLink className="nav-link" to="/CargaSaldo">Carga Saldo</NavLink>
         </li>
         <li className="nav-item">
-          <NavLink className="nav-link" to="/EnviarDinero">Manda Plata!</NavLink>
+          <NavLink className="nav-link" to="/EnvioDinero">Manda Plata!</NavLink>
         </li>
         <li className="nav-item">
           <NavLink className="nav-link" to="/Gastos">Tus Gastos</NavLink>
