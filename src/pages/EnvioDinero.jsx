@@ -37,7 +37,7 @@ export const EnvioDinero = () => {
           </label>
           <input
             className=" my-4 border border-1 border-secondary opacity-50  rounded-1 "
-            type="number"
+            type="email"
             name=""
             id=""
           />
