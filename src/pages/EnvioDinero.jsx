@@ -8,7 +8,7 @@ export const EnvioDinero = () => {
       <div className="d-flex row py-5 my-4 col-12 flex-wrap justify-content-around">
         <div className="d-flex  flex-column align-items-center  my-4 col-8 col-md-4 py-3 rounded-2  border border-secondary border-opacity-25 justify-content-center" >
           <Title size={"h4"}>Transferir con ID de cuenta</Title>
-          <label className="text-center mt-4" htmlFor="">
+          <label className="text-center mt-4 text-secondary" htmlFor="">
             ID de la cuenta
           </label>
           <input
@@ -17,7 +17,7 @@ export const EnvioDinero = () => {
             name=""
             id=""
           />
-          <label className="text-center" htmlFor="">
+          <label className="text-center text-secondary" htmlFor="">
             importe a transferir
           </label>
           <input
@@ -32,7 +32,7 @@ export const EnvioDinero = () => {
         </div>
         <div className="d-flex flex-column align-items-center  my-4 col-8 col-md-4 py-3 rounded-2  border border-secondary border-opacity-25  justify-content-center" >
           <Title size={"h4"}>Transferir con mail</Title>
-          <label className="text-center mt-4" htmlFor="">
+          <label className="text-center mt-4 text-secondary" htmlFor="">
             Mail del usuario
           </label>
           <input
@@ -41,7 +41,7 @@ export const EnvioDinero = () => {
             name=""
             id=""
           />
-          <label className="text-center" htmlFor="">
+          <label className="text-center text-secondary" htmlFor="">
             importe a transferir
           </label>
           <input
