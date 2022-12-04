@@ -5,8 +5,8 @@ export const EnvioDinero = () => {
   return (
     <div className=" d-flex flex-column text-center justify-content-center my-5 align-items-center flex-wrap">
       <Title size={"h1"}>Transferi dinero a tus amigos</Title>
-      <div className="d-flex row py-5 my-4 col-12 flex-wrap">
-        <div className="d-flex  flex-column align-items-center  my-4 col-12 col-md-6 justify-content-center">
+      <div className="d-flex row py-5 my-4 col-12 flex-wrap justify-content-around">
+        <div className="d-flex  flex-column align-items-center  my-4 col-8 col-md-4 py-3 rounded-2  border border-secondary border-opacity-25 justify-content-center" >
           <Title size={"h4"}>Transferir con ID de cuenta</Title>
           <label className="text-center mt-4" htmlFor="">
             ID de la cuenta
@@ -30,8 +30,7 @@ export const EnvioDinero = () => {
             <button className="btn btn-primary ms-auto">Transferir</button>
           </div>
         </div>
-          <div className="border-start border-secondary col-md-1"></div>
-        <div className="d-flex flex-column align-items-center  my-4 col-12 col-md-5  justify-content-center">
+        <div className="d-flex flex-column align-items-center  my-4 col-8 col-md-4 py-3 rounded-2  border border-secondary border-opacity-25  justify-content-center" >
           <Title size={"h4"}>Transferir con mail</Title>
           <label className="text-center mt-4" htmlFor="">
             Mail del usuario
