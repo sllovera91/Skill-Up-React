@@ -5,20 +5,17 @@ import { Inicio, Balance, CargaSaldo, EnvioDinero, Gastos, Movimientos, Error404
 import { useEffect } from "react";
 import { useAuth } from "../hooks/useAuth";
 
-
-
 export const Rutas = () => {
-
   const { status, verifToken } = useAuth();
 
   useEffect(() => {
     verifToken();
-  }, [])
+  }, []);
 
-  if ( status === 'validando' ) {
+  if (status === "validando") {
     return (
       <h1>Aguarde un momento...</h1>
-    )
+    );
   }
 
   return (
