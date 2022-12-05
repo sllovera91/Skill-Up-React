@@ -1,37 +1,46 @@
 /* eslint-disable no-unused-vars */
-import { useState } from "react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/alkemy_logo.svg";
+import { useAuth } from "../../hooks/useAuth";
+import { useForm } from "../../hooks/useForm";
 import styles from "./Login.module.css";
 
-export const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-  const handleInputChange = e => {
-    const name = e.target.name;
-    const value = e.target.value;
-    if (name === "email") {
-      setEmail(value);
-    }
-    if (name === "password") {
-      setPassword(value);
-    }
-  };
+
+
+
+
+
+const loginInputs = {
+  email:    '',
+  password: '',
+};
+
+
+export const Login = () => {
+
+  const { startLogin, errorMessage } = useAuth();
+
+  const { email, password, onInputChange } = useForm(loginInputs);
 
   const handleSubmit = e => {
     e.preventDefault();
-    const loginForm = document.getElementById("loginform");
-    if (!loginForm.checkValidity()) {
-      e.stopPropagation();
-    } else {
-      loginForm.classList.add("was-validated");
-      const authBody = {
-        email,
-        password
-      };
-    }
+    startLogin({email, password})
   };
+
+
+
+  useEffect(() => {
+    if(errorMessage !== undefined ) {
+      console.log(errorMessage)
+      //Armar Toastfy
+    }
+  }, [errorMessage])
+  
+
 
   return (
     <section className="h-100">
@@ -44,10 +53,19 @@ export const Login = () => {
             <div className={`card shadow-lg ${styles.FormCard}`}>
               <div className={`card-body ${styles.FormContent}`}>
                 <h1 className="fs-4 card-title fw-bold mb-4">Iniciar sesión</h1>
-                <form method="POST" className="needs-validation" noValidate autoComplete="off" id="loginform" onSubmit={e => handleSubmit(e)}>
+                <form method="POST" className="needs-validation" noValidate autoComplete="off" id="loginform" onSubmit={handleSubmit}>
                   <div className="mb-3">
                     <label className="mb-2 text-muted" htmlFor="email">Correo electrónico *</label>
-                    <input id="email" type="email" className="form-control" name="email" required autoFocus onChange={e => handleInputChange(e)}/>
+                    <input 
+                      type="text" 
+                      className="form-control" 
+                      placeholder="Ingrese su correo electronico"
+                      name="email" 
+                      value={ email }
+                      required 
+                      autoFocus 
+                      onChange={onInputChange}
+                      />
                     <div className="invalid-feedback">
                       Correo electrónico inválido
                     </div>
@@ -59,7 +77,15 @@ export const Login = () => {
                         ¿Olvidaste tu contraseña?
                       </Link>
                     </div>
-                    <input id="password" type="password" className="form-control" name="password" required autoComplete="true" onChange={e => handleInputChange(e)}/>
+                    <input 
+                      type="password" 
+                      className="form-control"
+                      name="password" 
+                      value={password}
+                      required 
+                      autoComplete="true" 
+                      onChange={onInputChange}
+                    />
                     <div className="invalid-feedback">
                       Debe ingresar una contraseña
                     </div>
