@@ -1,12 +1,10 @@
-const Button = ({ variant = "primary", action, children }) => {
+export const Button = ({ variant = "btn-primary", action, children }) => {
   return (
     <button
-      className={`${variant}`}
+      className={`btn ${variant}`}
       onClick={() => action()}
     >
       {children}
     </button>
   );
 };
-
-export default Button;
