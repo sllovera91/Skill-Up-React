@@ -2,9 +2,7 @@ import { Link, NavLink } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 
 export const Navbar = () => {
-
-  const { startLogout, user } = useAuth();
-
+  const { startLogout } = useAuth();
 
   return (
    <nav className="navbar navbar-expand-md navbar-dark bg-primary">
