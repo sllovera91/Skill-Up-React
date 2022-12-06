@@ -5,6 +5,8 @@ import alkemyApi from "../api/login.js";
 
 export const Balance = () => {
   const [operations, setOperations] = useState([]);
+  const [totalTopups, setTotalTopups] = useState(0);
+  const [totalPayments, setTotalPayments] = useState(0);
 
   const token = localStorage.getItem("token");
 
@@ -17,8 +19,23 @@ export const Balance = () => {
    const getTransactions = async () => {
     try {
       const response = await alkemyApi.get("/transactions", Autorizacion);
-      console.log(response);
+      const data = response.data.data;
       setOperations(response.data.data);
+
+      let topups = 0;
+      let payments = 0;
+      data.forEach(operation => {
+        if (operation.type === "payment") {
+          payments += +operation.amount;
+        }
+
+        if (operation.type === "topups") {
+          topups += +operation.amount;
+        }
+      });
+
+      setTotalTopups(topups);
+      setTotalPayments(payments);
     } catch (error) {
       console.log("no anduvo");
     }
@@ -40,8 +57,8 @@ export const Balance = () => {
 
               <img src="https://img.freepik.com/vector-gratis/ilustracion-concepto-abstracto-renta-imponible_335657-3672.jpg?w=826&t=st=1670355437~exp=1670356037~hmac=1984293bcda7a9adbc4f0d50820b41c82b4678b88d9ac3c02ca599069b563427" className="rounded-circle" width="150" height="150" />
               <div className="card-title mt-2 mb-1"></div>
-              <span className="fs-2 mb-3 font-weight-bold">Balance</span>
-              <p className="mb-3 mt-3">$ 500</p>
+              <span className="fs-2 mb-3 font-weight-bold">Ingresos</span>
+              <p className="mb-3 mt-3">$ {totalTopups}</p>
             </div>
           </div>
         </div>
@@ -63,8 +80,8 @@ export const Balance = () => {
 
               <img src="https://img.freepik.com/vector-premium/man-riding-on-infographic-arrow-board-with-diagram-pie-charts-arrows-growth-income-analytics-layout-business-data-analysis-concept-flat-style-boy-in-blue-tshirt-on-white-background_774778-54.jpg" className="rounded-circle" width="150" height="150"/>
               <div className="card-title mt-2 mb-1"></div>
-              <span className="fs-2 mb-3 font-weight-bold">Payments</span>
-              <p className="mb-3 mt-3">$ 500</p>
+              <span className="fs-2 mb-3 font-weight-bold">Pagos</span>
+              <p className="mb-3 mt-3">$ {totalPayments}</p>
             </div>
           </div>
         </div>
