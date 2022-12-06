@@ -1,9 +1,35 @@
-import React from "react";
 import { Title } from "../components/Title";
+import { TableTransaction } from "../components/TableTransaction";
+import React, { useEffect, useState } from "react";
+import alkemyApi from "../api/login.js";
 
 export const Balance = () => {
+  const [operations, setOperations] = useState([]);
+
+  const token = localStorage.getItem("token");
+
+  const Autorizacion = {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  };
+
+   const getTransactions = async () => {
+    try {
+      const response = await alkemyApi.get("/transactions", Autorizacion);
+      console.log(response);
+      setOperations(response.data.data);
+    } catch (error) {
+      console.log("no anduvo");
+    }
+  };
+
+  useEffect(() => {
+    getTransactions();
+  }, []);
+
   return (<>
-    <div className="container-fluid d-flex justify-content-center mt-100 flex-column mh-100">
+    <div className="container-fluid d-flex justify-content-center flex-column">
       <div className="text-center m-3">
         <Title size={"h1"}>Balance</Title>
       </div>
@@ -49,90 +75,7 @@ export const Balance = () => {
       <Title size={"h3"}>Ultimos movimientos</Title>
     </div>
 
-    <table className="table w-75 shadow-lg p-3 mb-5 mt-5 bg-white rounded mx-auto bg-white">
-      <thead className="bg-light">
-        <tr>
-          <th>Concepto</th>
-          <th>Importe</th>
-          <th>Tipo</th>
-          <th>Fecha</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            <div className="d-flex align-items-center">
-              <div className="ms-3">
-              <p className="text-secondary">Comida</p>
-              </div>
-            </div>
-          </td>
-          <td>
-            <p className="text-secondary">Payment</p>
-            </td>
-          <td>
-            <p className="text-secondary">Payment</p>
-            </td>
-          <td>
-            <p className="text-secondary">12/12/2020</p>
-            </td>
-        </tr>
-        <tr>
-          <td>
-            <div className="d-flex align-items-center">
-              <div className="ms-3">
-              <p className="text-secondary">Comida</p>
-              </div>
-            </div>
-          </td>
-          <td>
-            <p className="text-secondary">Payment</p>
-            </td>
-          <td>
-            <p className="text-secondary">Payment</p>
-            </td>
-          <td>
-            <p className="text-secondary">12/12/2020</p>
-            </td>
-        </tr>
-        <tr>
-          <td>
-            <div className="d-flex align-items-center">
-              <div className="ms-3">
-              <p className="text-secondary">Comida</p>
-              </div>
-            </div>
-          </td>
-          <td>
-            <p className="text-secondary">Payment</p>
-            </td>
-          <td>
-            <p className="text-secondary">Payment</p>
-            </td>
-          <td>
-            <p className="text-secondary">12/12/2020</p>
-            </td>
-        </tr>
-        <tr>
-          <td>
-            <div className="d-flex align-items-center">
-              <div className="ms-3">
-              <p className="text-secondary">Comida</p>
-              </div>
-            </div>
-          </td>
-          <td>
-            <p className="text-secondary">Payment</p>
-            </td>
-          <td>
-            <p className="text-secondary">Payment</p>
-            </td>
-          <td>
-            <p className="text-secondary">12/12/2020</p>
-            </td>
-        </tr>
-      </tbody>
-    </table>
+    <TableTransaction operations={operations} setOperations={setOperations}/>
   </>
   );
 };
