@@ -1,11 +1,12 @@
-import React from "react";
+import 'animate.css';
+
 
 export const Inicio = () => {
   return (
-    <div className="App">
+    <div className="App animate__animated animate__fadeInUp ">
     <header className="App-header">
       <img src={"./alkemy_logo.svg"} className="App-logo" alt="logo" />
-      <h1>
+      <h1 >
         Bienvenidos a AlkyBank
       </h1>
 

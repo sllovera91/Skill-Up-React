@@ -1,11 +1,10 @@
 /* eslint-disable no-unused-vars */
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/alkemy_logo.svg";
 import { useAuth } from "../../hooks/useAuth";
 import { useForm } from "../../hooks/useForm";
-import styles from "./Login.module.css";
-import Swal from 'sweetalert2'
+import styles from "./Register.module.css";
 
 
 
@@ -13,36 +12,34 @@ import Swal from 'sweetalert2'
 
 
 
-const loginInputs = {
+const registerInputs = {
   email:    '',
   password: '',
+  first_name: '',
+  last_name: ''
 };
 
-// const userData = { 
-//   first_name: '',
-//   last_name: '',
-//  }
 
+export const Register = () => {
 
-export const Login = () => {
+  const navigate = useNavigate()
 
-  const { Login, errorMsg } = useAuth();
+  const { Register, errorMessage } = useAuth();
 
-  const { email, password, onInputChange } = useForm(loginInputs);
-
+  const { email, password, first_name, last_name, onInputChange } = useForm(registerInputs);
 
   const handleSubmit = e => {
     e.preventDefault();
-    Login({email, password})
+    Register({email, password, first_name, last_name})
   };
 
 
 
   useEffect(() => {
-    if(errorMsg !== undefined ) {
-      Swal.fire('Error', errorMsg, 'error');
+    if(errorMessage !== undefined ) {
+      console.log(errorMessage)
     }
-  }, [errorMsg])
+  }, [errorMessage])
   
 
 
@@ -56,7 +53,7 @@ export const Login = () => {
             </div>
             <div className={`card shadow-lg ${styles.FormCard}`}>
               <div className={`card-body ${styles.FormContent}`}>
-                <h1 className="fs-4 card-title fw-bold mb-4">Iniciar sesión</h1>
+                <h1 className="fs-4 card-title fw-bold mb-4">Sumate a Alybank</h1>
                 <form method="POST" className="needs-validation" noValidate autoComplete="off" id="loginform" onSubmit={handleSubmit}>
                   <div className="mb-3">
                     <label className="mb-2 text-muted" htmlFor="email">Correo electrónico *</label>
@@ -72,6 +69,40 @@ export const Login = () => {
                       />
                     <div className="invalid-feedback">
                       Correo electrónico inválido
+                    </div>
+                  </div>
+                  <div className="mb-3">
+                    <div className={`mb-2 w-100 ${styles.PasswordLabel}`}>
+                      <label className="text-muted" htmlFor="password">Nombre *</label>
+                    </div>
+                    <input 
+                      type="text" 
+                      className="form-control"
+                      name="first_name" 
+                      value={first_name}
+                      required 
+                      autoComplete="true" 
+                      onChange={onInputChange}
+                    />
+                    <div className="invalid-feedback">
+                      Debe ingresar una contraseña
+                    </div>
+                  </div>
+                  <div className="mb-3">
+                    <div className={`mb-2 w-100 ${styles.PasswordLabel}`}>
+                      <label className="text-muted" htmlFor="password">Apellido *</label>
+                    </div>
+                    <input 
+                      type="text" 
+                      className="form-control"
+                      name="last_name" 
+                      value={last_name}
+                      required 
+                      autoComplete="true" 
+                      onChange={onInputChange}
+                    />
+                    <div className="invalid-feedback">
+                      Debe ingresar una contraseña
                     </div>
                   </div>
                   <div className="mb-3">
@@ -92,15 +123,15 @@ export const Login = () => {
                     </div>
                   </div>
                   <div className="d-flex align-items-center">
-                    <button type="submit" className="btn btn-primary ms-auto w-100">
-                      Ingresar
+                    <button type="submit" className="btn btn-primary ms-auto w-100" >
+                      Registrate
                     </button>
                   </div>
                 </form>
               </div>
-              <div className="card-footer py-3 border-0">
-                <div className="text-center">
-                  ¿Todavia no sos Alkymer? <Link to="/Register" className="text-dark">Unite</Link>
+              <div className="card-footer py-3 border-0 ">
+                <div className="text-center ">
+                  ¿Ya tenes cuenta? <Link to="/" className="text-dark">Ingresa</Link>
                 </div>
               </div>
             </div>
