@@ -5,11 +5,12 @@ import { onChecking, onLogin, onLogout } from "../redux/slices/auth.Slice"
 
 
 export const useAuth = () => {
+    
 
-    const {status, user, errorMessage } = useSelector(state => state.auth)
+    const {status, user, errorMsg } = useSelector(state => state.auth)
     const dispatch = useDispatch()
 
-    const startLogin = async({ email, password }) => {
+    const Login = async({ email, password }) => {
         dispatch(onChecking())
         try {
             const {data} = await alkemyApi.post('/auth/login',{email, password})
@@ -18,6 +19,18 @@ export const useAuth = () => {
         } catch (error) {
             dispatch(onLogout('Usuario o Contraseña incorrecto'))
             
+        }
+    }
+
+
+    const Register = async({ email, password }) => {
+        dispatch(onChecking())
+        try {
+         const {data} = await alkemyApi.post('/users',{email, password})
+         dispatch(onLogout())
+         window.location = "/"
+        } catch (error) {
+            dispatch(onLogout())
         }
     }
 
@@ -30,7 +43,7 @@ export const useAuth = () => {
         } 
     }
 
-    const startLogout = () => {
+    const Logout = () => {
         localStorage.clear();
         dispatch(onLogout());
     }
@@ -40,10 +53,11 @@ export const useAuth = () => {
     return {
         status, 
         user, 
-        errorMessage,
-        startLogin,
+        errorMsg,
+        Login,
         verifToken,
-        startLogout,
+        Logout,
+        Register
 
 
 

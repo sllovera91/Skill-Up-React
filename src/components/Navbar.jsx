@@ -1,9 +1,11 @@
+
 import { Link, NavLink } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 
 export const Navbar = () => {
 
-  const { startLogout, user } = useAuth();
+  const { Logout } = useAuth();
+
 
 
   return (
@@ -21,6 +23,8 @@ export const Navbar = () => {
     <div className="collapse navbar-collapse" id="menu">
       <ul className="navbar-nav ms-auto">
       <li className="nav-item">
+        </li>
+      <li className="nav-item">
           <NavLink className="nav-link" to="/">Inicio</NavLink>
         </li>
       <li className="nav-item">
@@ -36,8 +40,9 @@ export const Navbar = () => {
           <NavLink className="nav-link" to="/Gastos">Tus Gastos</NavLink>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" onClick={startLogout}>Salir</Link>
+          <Link className="nav-link" onClick={Logout}>Salir</Link>
         </li>
+        
       </ul>
     </div>
 
