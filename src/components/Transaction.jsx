@@ -1,12 +1,21 @@
 import React from "react";
+import { handleConcept, handleDate } from "../helper/helper";
 
-export const Transaction = () => {
+export const Transaction = ({ concept, amount, date, type }) => {
   return (
-    <tr>
-      <td className="text-secondary">Pago de honorarios</td>
-      <td>$500</td>
-      <td><span className="badge bg-success">Ingreso</span></td>
-      <td>04/10/2022</td>
-    </tr>
+    <div className="d-flex justify-content-between">
+      <div className="col-12">
+        <td className="text-secondary">{handleConcept(concept)}</td>
+      </div>
+      <div className="col-3 ms-3">{<td>${amount}</td>}</div>
+      <div className="col-2 ps-4 d-flex justify-content-center">
+        <td>
+          <span className={`badge ${type === "topup" ? "bg-success" : "bg-danger"}`}>{type}</span>
+        </td>
+      </div>
+      <div className="col-4 ms-4 d-flex justify-content-end">
+        <td>{handleDate(date)}</td>
+      </div>
+    </div>
   );
 };
