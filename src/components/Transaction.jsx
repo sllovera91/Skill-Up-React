@@ -1,11 +1,11 @@
 import React from "react";
-import { handleConcept, handleDate } from "../helper/helper";
+import { handleDate } from "../helper/helper";
 
 export const Transaction = ({ concept, amount, date, type }) => {
   return (
     <div className="d-flex justify-content-between">
       <div className="col-12">
-        <td className="text-secondary">{handleConcept(concept)}</td>
+        <td className="text-secondary">{concept}</td>
       </div>
       <div className="col-3 ms-3">{<td>${amount}</td>}</div>
       <div className="col-2 ps-4 d-flex justify-content-center">
