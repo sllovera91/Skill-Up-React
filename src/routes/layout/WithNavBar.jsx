@@ -5,7 +5,9 @@ export const WithNavBar = () => {
   return (
     <>
       <Navbar />
-      <Outlet />
+      <div className="page">
+        <Outlet />
+      </div>
       <Footer/>
     </>
   );

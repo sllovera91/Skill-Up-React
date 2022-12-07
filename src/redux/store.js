@@ -4,17 +4,18 @@ import accountSlice from "./slices/account.slice";
 import transactionsSlice from "./slices/transactions.slice";
 import { authSlice } from "./slices/auth.Slice";
 
-
 const rootReducer = combineReducers({
   userSlice,
   accountSlice,
-  transactionsSlice,
+  transactionsSlice
 });
 
 const store = configureStore({
   reducer: {
     rootReducer,
-    auth: authSlice.reducer
+    auth: authSlice.reducer,
+    transactions: transactionsSlice,
+    user: userSlice
   }
 });
 

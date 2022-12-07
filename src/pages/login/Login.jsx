@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+// eslint-disable-file no-use-before-define
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import logo from "../../assets/alkemy_logo.svg";
@@ -6,45 +6,31 @@ import { useAuth } from "../../hooks/useAuth";
 import { useForm } from "../../hooks/useForm";
 import styles from "./Login.module.css";
 import Swal from 'sweetalert2'
-
-
-
-
-
-
+// import "react-toastify/dist/ReactToastify.css";
 
 const loginInputs = {
-  email:    '',
-  password: '',
+  email: "",
+  password: ""
 };
 
-// const userData = { 
-//   first_name: '',
-//   last_name: '',
-//  }
-
-
 export const Login = () => {
-
-  const { Login, errorMsg } = useAuth();
+  const { startLogin, errorMessage } = useAuth();
 
   const { email, password, onInputChange } = useForm(loginInputs);
 
 
   const handleSubmit = e => {
     e.preventDefault();
-    Login({email, password})
+
   };
 
-
-
   useEffect(() => {
-    if(errorMsg !== undefined ) {
-      Swal.fire('Error', errorMsg, 'error');
-    }
-  }, [errorMsg])
-  
 
+    if (errorMessage !== undefined) {
+      console.log(errorMessage);
+      // Armar Toastfy
+    }
+  }, [errorMessage]);
 
   return (
     <section className="h-100">
@@ -60,14 +46,14 @@ export const Login = () => {
                 <form method="POST" className="needs-validation" noValidate autoComplete="off" id="loginform" onSubmit={handleSubmit}>
                   <div className="mb-3">
                     <label className="mb-2 text-muted" htmlFor="email">Correo electrónico *</label>
-                    <input 
-                      type="text" 
-                      className="form-control" 
+                    <input
+                      type="text"
+                      className="form-control"
                       placeholder="Ingrese su correo electronico"
-                      name="email" 
+                      name="email"
                       value={ email }
-                      required 
-                      autoFocus 
+                      required
+                      autoFocus
                       onChange={onInputChange}
                       />
                     <div className="invalid-feedback">
@@ -78,13 +64,13 @@ export const Login = () => {
                     <div className={`mb-2 w-100 ${styles.PasswordLabel}`}>
                       <label className="text-muted" htmlFor="password">Contraseña *</label>
                     </div>
-                    <input 
-                      type="password" 
+                    <input
+                      type="password"
                       className="form-control"
-                      name="password" 
+                      name="password"
                       value={password}
-                      required 
-                      autoComplete="true" 
+                      required
+                      autoComplete="true"
                       onChange={onInputChange}
                     />
                     <div className="invalid-feedback">

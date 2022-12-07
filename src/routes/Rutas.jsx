@@ -9,24 +9,17 @@ import { Register } from "../pages/register/Register";
 
 
 
-
-
 export const Rutas = () => {
-
-
   const { status, verifToken } = useAuth();
 
   useEffect(() => {
     verifToken();
-    
-  }, [])
+  }, []);
 
-
-
-  if ( status === 'validando' ) {
+  if (status === "validando") {
     return (
       <h1>Aguarde un momento...</h1>
-    )
+    );
   }
 
   return (

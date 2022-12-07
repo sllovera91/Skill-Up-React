@@ -2,8 +2,10 @@ import React from "react";
 
 export const Footer = () => {
   return (
-    <div className='bg-primary'>
-        <p className='text-center text-white p-4'>2022 - Grupo Alkemy</p>
-    </div>
+    <footer className="footer text-center text-white bg-primary">
+      <div className="text-center p-4">
+        2022 - Grupo Alkemy
+      </div>
+    </footer>
   );
 };

@@ -1,19 +1,29 @@
+import React, { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { TableTransaction } from "../components/TableTransaction";
+import { PaginationControl } from "../components/PaginationControl";
+import { useTransactions } from "../hooks/useTransactions";
 
 export const Movimientos = () => {
+  const { getTransactions } = useTransactions();
+  useEffect(() => {
+    getTransactions();
+  }, []);
+
+  const operations = useSelector((state) => state.transactions.transactions);
+
   return (
     <div className="App">
-    <header className="App-header">
-      <img src={"./alkemy_logo.svg"} className="App-logo" alt="logo" />
-      <h1 >
-        Bienvenidos a AlkyBank
-      </h1>
-
-      <hr/>
-
-      <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-      </p>
-    </header>
-  </div>
+      { operations && operations.length !== 0
+        ? <>
+          <TableTransaction operations={operations} />
+          <PaginationControl/>
+        </>
+        : <div className="page mx-auto text-center w-auto">
+          <img className="rounded-circle" width="600" height="600" src="https://img.freepik.com/free-vector/no-data-concept-illustration_114360-536.jpg?w=826&t=st=1670198889~exp=1670199489~hmac=7138bd0b752b975b0a174529054e4a7919f58781eea7663f77a983f59482c240" />
+          <h3>No hay movimientos</h3>
+        </div>
+      }
+    </div>
   );
 };

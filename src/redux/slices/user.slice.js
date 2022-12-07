@@ -8,6 +8,11 @@ const userSliceEmptyState = {
         roleId: 2,
         points: 0
     },
+    acquisition: {
+      balance: 0,
+      payments: 0,
+      topups: 0
+    },
     jwt: ""
 };
 
@@ -29,9 +34,15 @@ const userSlice = createSlice({
         ...state.user,
         jwt: action.payload
       };
+    },
+    setBalance: (state, action) => {
+      return {
+        ...state.acquisition,
+        acquisition: action.payload
+      };
     }
   }
 });
 
-export const { resetUserState } = userSlice.actions;
+export const { resetUserState, setBalance } = userSlice.actions;
 export default userSlice.reducer;
