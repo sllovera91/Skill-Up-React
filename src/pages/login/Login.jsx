@@ -5,7 +5,7 @@ import logo from "../../assets/alkemy_logo.svg";
 import { useAuth } from "../../hooks/useAuth";
 import { useForm } from "../../hooks/useForm";
 import styles from "./Login.module.css";
-
+import Swal from 'sweetalert2'
 // import "react-toastify/dist/ReactToastify.css";
 
 const loginInputs = {
@@ -18,12 +18,14 @@ export const Login = () => {
 
   const { email, password, onInputChange } = useForm(loginInputs);
 
+
   const handleSubmit = e => {
     e.preventDefault();
-    startLogin({ email, password });
+
   };
 
   useEffect(() => {
+
     if (errorMessage !== undefined) {
       console.log(errorMessage);
       // Armar Toastfy
@@ -61,9 +63,6 @@ export const Login = () => {
                   <div className="mb-3">
                     <div className={`mb-2 w-100 ${styles.PasswordLabel}`}>
                       <label className="text-muted" htmlFor="password">Contraseña *</label>
-                      <Link href="/cambio-contraseña">
-                        ¿Olvidaste tu contraseña?
-                      </Link>
                     </div>
                     <input
                       type="password"
@@ -79,11 +78,7 @@ export const Login = () => {
                     </div>
                   </div>
                   <div className="d-flex align-items-center">
-                    <div className="form-check">
-                      <input type="checkbox" name="remember" id="remember" className="form-check-input"/>
-                      <label htmlFor="remember" className="form-check-label">Recordarme</label>
-                    </div>
-                    <button type="submit" className="btn btn-primary ms-auto">
+                    <button type="submit" className="btn btn-primary ms-auto w-100">
                       Ingresar
                     </button>
                   </div>
@@ -91,7 +86,7 @@ export const Login = () => {
               </div>
               <div className="card-footer py-3 border-0">
                 <div className="text-center">
-                  ¿No tienes una cuenta? <Link to="/registro" className="text-dark">Regístrate</Link>
+                  ¿Todavia no sos Alkymer? <Link to="/Register" className="text-dark">Unite</Link>
                 </div>
               </div>
             </div>

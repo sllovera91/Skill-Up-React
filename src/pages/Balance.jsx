@@ -3,7 +3,6 @@ import { Title } from "../components/Title";
 import { TableTransaction } from "../components/TableTransaction";
 import { useSelector } from "react-redux";
 import { useTransactions } from "../hooks/useTransactions";
-
 export const Balance = () => {
   const { getTransactions } = useTransactions();
   useEffect(() => {
@@ -14,6 +13,7 @@ export const Balance = () => {
   const { balance, payments, topups } = useSelector((state) => state.user.acquisition);
 
   return (
+
     <>
       <div className="container-fluid d-flex justify-content-center flex-column">
         <div className="text-center m-3">

@@ -4,6 +4,7 @@ import alkemyApi from "../api/login";
 import { onChecking, onLogin, onLogout } from "../redux/slices/auth.Slice";
 
 export const useAuth = () => {
+
     const { status, user, errorMessage } = useSelector(state => state.auth);
     const dispatch = useDispatch();
 
@@ -18,6 +19,18 @@ export const useAuth = () => {
         }
     };
 
+
+    const Register = async({ email, password }) => {
+        dispatch(onChecking())
+        try {
+         const {data} = await alkemyApi.post('/users',{email, password})
+         dispatch(onLogout())
+         window.location = "/"
+        } catch (error) {
+            dispatch(onLogout())
+        }
+    }
+
     const verifToken = () => {
         const token = localStorage.getItem("token");
         dispatch(onLogin());
@@ -26,18 +39,22 @@ export const useAuth = () => {
         }
     };
 
-    const startLogout = () => {
+    const Logout = () => {
         localStorage.clear();
         dispatch(onLogout());
     };
 
     return {
-        status,
-        user,
-        errorMessage,
-        startLogin,
+
+        status, 
+        user, 
+        errorMsg,
+        Login,
         verifToken,
-        startLogout
+        Logout,
+        Register
+
+
 
     };
 };
