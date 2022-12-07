@@ -1,6 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const transactionsSliceEmptyState = [];
+const transactionsSliceEmptyState = {
+  transactions: []
+};
 
 const transactionsSlice = createSlice({
   name: "transactions",
@@ -9,11 +11,14 @@ const transactionsSlice = createSlice({
     resetTransactionsState: () => {
       return transactionsSliceEmptyState;
     },
-    setTransactions: (_, action) => {
-      return action.payload;
+    setTransactions: (state, action) => {
+      return {
+        ...state,
+        transactions: action.payload
+      };
     }
   }
 });
 
-export const { resetTransactionsState } = transactionsSlice.actions;
+export const { setTransactions } = transactionsSlice.actions;
 export default transactionsSlice.reducer;

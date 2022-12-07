@@ -5,7 +5,7 @@ export const Navbar = () => {
   const { startLogout } = useAuth();
 
   return (
-   <nav className="navbar navbar-expand-md navbar-dark bg-primary">
+   <nav className="header navbar navbar-expand-md navbar-dark bg-primary ">
     <div className="container-fluid">
 
     <Link className="navbar-brand" to="/">
@@ -20,6 +20,9 @@ export const Navbar = () => {
       <ul className="navbar-nav ms-auto">
       <li className="nav-item">
           <NavLink className="nav-link" to="/">Inicio</NavLink>
+        </li>
+        <li className="nav-item">
+          <NavLink className="nav-link" to="/Balance">Balance</NavLink>
         </li>
       <li className="nav-item">
           <NavLink className="nav-link" to="/Movimientos">Movimientos</NavLink>

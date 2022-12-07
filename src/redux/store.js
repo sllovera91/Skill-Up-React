@@ -13,7 +13,9 @@ const rootReducer = combineReducers({
 const store = configureStore({
   reducer: {
     rootReducer,
-    auth: authSlice.reducer
+    auth: authSlice.reducer,
+    transactions: transactionsSlice,
+    user: userSlice
   }
 });
 
