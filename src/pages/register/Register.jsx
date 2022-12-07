@@ -6,23 +6,15 @@ import { useAuth } from "../../hooks/useAuth";
 import { useForm } from "../../hooks/useForm";
 import styles from "./Register.module.css";
 
-
-
-
-
-
-
 const registerInputs = {
-  email:    '',
-  password: '',
-  first_name: '',
-  last_name: ''
+  email: "",
+  password: "",
+  first_name: "",
+  last_name: ""
 };
 
-
 export const Register = () => {
-
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const { Register, errorMessage } = useAuth();
 
@@ -30,18 +22,14 @@ export const Register = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
-    Register({email, password, first_name, last_name})
+    Register({ email, password, first_name, last_name });
   };
 
-
-
   useEffect(() => {
-    if(errorMessage !== undefined ) {
-      console.log(errorMessage)
+    if (errorMessage !== undefined) {
+      console.log(errorMessage);
     }
-  }, [errorMessage])
-  
-
+  }, [errorMessage]);
 
   return (
     <section className="h-100">
@@ -57,14 +45,14 @@ export const Register = () => {
                 <form method="POST" className="needs-validation" noValidate autoComplete="off" id="loginform" onSubmit={handleSubmit}>
                   <div className="mb-3">
                     <label className="mb-2 text-muted" htmlFor="email">Correo electrónico *</label>
-                    <input 
-                      type="text" 
-                      className="form-control" 
+                    <input
+                      type="text"
+                      className="form-control"
                       placeholder="Ingrese su correo electronico"
-                      name="email" 
+                      name="email"
                       value={ email }
-                      required 
-                      autoFocus 
+                      required
+                      autoFocus
                       onChange={onInputChange}
                       />
                     <div className="invalid-feedback">
@@ -75,13 +63,13 @@ export const Register = () => {
                     <div className={`mb-2 w-100 ${styles.PasswordLabel}`}>
                       <label className="text-muted" htmlFor="password">Nombre *</label>
                     </div>
-                    <input 
-                      type="text" 
+                    <input
+                      type="text"
                       className="form-control"
-                      name="first_name" 
+                      name="first_name"
                       value={first_name}
-                      required 
-                      autoComplete="true" 
+                      required
+                      autoComplete="true"
                       onChange={onInputChange}
                     />
                     <div className="invalid-feedback">
@@ -92,13 +80,13 @@ export const Register = () => {
                     <div className={`mb-2 w-100 ${styles.PasswordLabel}`}>
                       <label className="text-muted" htmlFor="password">Apellido *</label>
                     </div>
-                    <input 
-                      type="text" 
+                    <input
+                      type="text"
                       className="form-control"
-                      name="last_name" 
+                      name="last_name"
                       value={last_name}
-                      required 
-                      autoComplete="true" 
+                      required
+                      autoComplete="true"
                       onChange={onInputChange}
                     />
                     <div className="invalid-feedback">
@@ -109,13 +97,13 @@ export const Register = () => {
                     <div className={`mb-2 w-100 ${styles.PasswordLabel}`}>
                       <label className="text-muted" htmlFor="password">Contraseña *</label>
                     </div>
-                    <input 
-                      type="password" 
+                    <input
+                      type="password"
                       className="form-control"
-                      name="password" 
+                      name="password"
                       value={password}
-                      required 
-                      autoComplete="true" 
+                      required
+                      autoComplete="true"
                       onChange={onInputChange}
                     />
                     <div className="invalid-feedback">

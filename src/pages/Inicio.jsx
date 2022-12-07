@@ -1,5 +1,4 @@
-import 'animate.css';
-
-      <Title size={"h1"}>Bienvenidos a AlkyBank</Title>
-  );
-};
+import "animate.css";
+<>
+  <h1 size={"h1"}>Bienvenidos a AlkyBank</h1>
+</>;

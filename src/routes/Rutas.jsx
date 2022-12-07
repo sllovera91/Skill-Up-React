@@ -6,9 +6,6 @@ import { useEffect } from "react";
 import { useAuth } from "../hooks/useAuth";
 import { Register } from "../pages/register/Register";
 
-
-
-
 export const Rutas = () => {
   const { status, verifToken } = useAuth();
 
@@ -39,8 +36,7 @@ export const Rutas = () => {
           <Route path="/*" element={ < Error404 /> } />
           <Route path="Register" element={<Navigate to="/" />} ></Route>
       </Route>
-      : 
-          (
+      : (
             <>
           <Route path="/" element={<Login />} />
           <Route path="/Register" element={ <Register />} />

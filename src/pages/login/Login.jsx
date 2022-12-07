@@ -5,7 +5,7 @@ import logo from "../../assets/alkemy_logo.svg";
 import { useAuth } from "../../hooks/useAuth";
 import { useForm } from "../../hooks/useForm";
 import styles from "./Login.module.css";
-import Swal from 'sweetalert2'
+import Swal from "sweetalert2";
 // import "react-toastify/dist/ReactToastify.css";
 
 const loginInputs = {
@@ -18,14 +18,11 @@ export const Login = () => {
 
   const { email, password, onInputChange } = useForm(loginInputs);
 
-
   const handleSubmit = e => {
     e.preventDefault();
-
   };
 
   useEffect(() => {
-
     if (errorMessage !== undefined) {
       console.log(errorMessage);
       // Armar Toastfy
