@@ -19,6 +19,7 @@ export const Login = () => {
 
   const handleSubmit = e => {
     e.preventDefault();
+    Login({ email, password });
   };
 
   useEffect(() => {
