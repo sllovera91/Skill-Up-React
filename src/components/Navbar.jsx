@@ -1,9 +1,11 @@
 
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 
 export const Navbar = () => {
   const { Logout } = useAuth();
+
+  const navigate = useNavigate();
 
   return (
    <nav className="header navbar navbar-expand-md navbar-dark bg-primary ">
@@ -40,7 +42,7 @@ export const Navbar = () => {
           <NavLink className="nav-link" to="/Gastos">Tus Gastos</NavLink>
         </li>
         <li className="nav-item">
-          <Link className="nav-link" onClick={Logout}>Salir</Link>
+          <Link to={"/"} className="nav-link" onClick={Logout}>Salir</Link>
         </li>
 
       </ul>
