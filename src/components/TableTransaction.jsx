@@ -2,7 +2,7 @@ import React from "react";
 import { useLocation } from "react-router-dom";
 import { Transaction } from "./Transaction";
 
-export const TableTransaction = ({ operations = [] }) => {
+export const TableTransaction = ({ operations }) => {
   const { pathname } = useLocation();
 
   return (
@@ -18,10 +18,10 @@ export const TableTransaction = ({ operations = [] }) => {
       <tbody>
         {
           pathname.toLocaleLowerCase() === "/balance"
-          ? operations.slice(0, 4).map(({ concept, amount, date, type }, index) => (
-            <Transaction key={index} concept={concept} amount={amount} date={date} type={type} />))
-            : operations.map(({ concept, amount, date, type }, index) => (
-              <Transaction key={index} concept={concept} amount={amount} date={date} type={type} />))
+            ? operations.slice(0, 4).map(({ concept, amount, date, type }, index) =>
+              <Transaction key={index} concept={concept} amount={amount} date={date} type={type} />)
+            : operations.map(({ concept, amount, date, type }, index) =>
+              <Transaction key={index} concept={concept} amount={amount} date={date} type={type} />)
         }
 
       </tbody>
