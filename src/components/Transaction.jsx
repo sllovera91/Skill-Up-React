@@ -3,12 +3,10 @@ import { handleDate } from "../helper/helper";
 
 export const Transaction = ({ concept, amount, date, type }) => {
   return (
-    <tr>
-    <td>
-      <div className="d-flex align-items-center">
-        <div className="ms-3">
-        <p className="text-secondary">{concept}</p>
-        </div>
+
+    <div className="d-flex justify-content-between">
+      <div className="col-12">
+        <td className="text-secondary">{concept}</td>
       </div>
     </td>
     <td>
