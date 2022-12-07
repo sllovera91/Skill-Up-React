@@ -6,7 +6,6 @@ import { useAuth } from "../../hooks/useAuth";
 import { useForm } from "../../hooks/useForm";
 import styles from "./Login.module.css";
 import Swal from "sweetalert2";
-// import "react-toastify/dist/ReactToastify.css";
 
 const loginInputs = {
   email: "",
@@ -14,7 +13,7 @@ const loginInputs = {
 };
 
 export const Login = () => {
-  const { startLogin, errorMessage } = useAuth();
+  const { Login, errorMessage } = useAuth();
 
   const { email, password, onInputChange } = useForm(loginInputs);
 
@@ -24,8 +23,11 @@ export const Login = () => {
 
   useEffect(() => {
     if (errorMessage !== undefined) {
-      console.log(errorMessage);
-      // Armar Toastfy
+      useEffect(() => {
+        if (errorMessage !== undefined) {
+          Swal.fire("Tus datos no son correctos", errorMessage, "error");
+        }
+      }, [errorMessage]);
     }
   }, [errorMessage]);
 

@@ -18,10 +18,12 @@ export const Register = () => {
 
   const { Register, errorMessage } = useAuth();
 
+  // eslint-disable-next-line camelcase
   const { email, password, first_name, last_name, onInputChange } = useForm(registerInputs);
 
   const handleSubmit = e => {
     e.preventDefault();
+    // eslint-disable-next-line camelcase
     Register({ email, password, first_name, last_name });
   };
 
@@ -67,6 +69,7 @@ export const Register = () => {
                       type="text"
                       className="form-control"
                       name="first_name"
+                      // eslint-disable-next-line camelcase
                       value={first_name}
                       required
                       autoComplete="true"
@@ -84,6 +87,7 @@ export const Register = () => {
                       type="text"
                       className="form-control"
                       name="last_name"
+                      // eslint-disable-next-line camelcase
                       value={last_name}
                       required
                       autoComplete="true"
