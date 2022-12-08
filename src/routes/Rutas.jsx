@@ -9,10 +9,11 @@ import { Title } from "../components/Title";
 import "../App.css";
 
 export const Rutas = () => {
-  const { status, verifToken } = useAuth();
+  const { status, verifToken, infoUsuario } = useAuth();
 
   useEffect(() => {
     verifToken();
+    infoUsuario();
   }, []);
 
   if (status === "validando") {
@@ -55,4 +56,5 @@ export const Rutas = () => {
     </BrowserRouter>
   );
 };
+
 export default Rutas;
