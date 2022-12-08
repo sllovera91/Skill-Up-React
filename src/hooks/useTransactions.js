@@ -5,10 +5,12 @@ import { setTransactions } from "../redux/slices/transactions.slice";
 import { setBalance } from "../redux/slices/user.slice";
 export const useTransactions = () => {
   const transactions = useSelector(state => state.transactions);
+  const user = useSelector(state => state.user.user);
+
   const dispatch = useDispatch();
 
   const token = localStorage.getItem("token");
- const Autorizacion = {
+  const Autorizacion = {
     headers: {
       Authorization: `Bearer ${token}`
     }
@@ -45,9 +47,28 @@ export const useTransactions = () => {
     }
   };
 
+  const createOperation = async (operation, type) => {
+    const userId = user?.id;
+    if (!userId) return { error: "Intentelo mas tarde" };
+
+    const operationUpdated = { ...operation, type, userId };
+
+    try {
+      const response = await alkemyApi.post(
+        "/transactions",
+        operationUpdated,
+        Autorizacion
+      );
+      return response.data;
+    } catch (error) {
+      return { error: error.message };
+    }
+  };
+
   return {
     transactions,
     getTransactions,
+    createOperation,
     Autorizacion
   };
 };
