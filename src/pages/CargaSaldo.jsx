@@ -5,29 +5,45 @@ import alkemyApi from "../api/login";
 import { Button } from "../components/Button";
 import { Title } from "../components/Title";
 import { useTransactions } from "../hooks/useTransactions";
-import transactionsSlice, {
-  setTransactions,
-} from "../redux/slices/transactions.slice";
 
 export const CargaSaldo = () => {
-  const { Autorizacion } = useTransactions();
-
   let today = new Date();
   today =
     today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate(); // Returns the date in the format "Year-Month-Date" (e.g. "2021-6-21")
+  const { Autorizacion } = useTransactions();
+  const [usuData, setUsuData] = useState("");
+  const traerDatosUsu = async () => {
+    try {
+      const response = await alkemyApi.get(
+        "/auth/me",
+        Autorizacion,
+        Autorizacion
+      );
+      console.log(response.data);
+      setUsuData(response.data.id);
+    } catch (error) {
+      console.log("no anduvo");
+    }
+  };
   const [transaction, setTransaction] = useState({
     amount: "",
     concept: "",
     date: today,
     type: "topup",
     accountId: 1,
-    userId: 2330,
+    userId: usuData,
     to_account_id: 5,
   });
+
+  useEffect(() => {
+    traerDatosUsu();
+    console.log(usuData);
+  }, [transaction]);
 
   const handleInput = (e) => {
     const { name, value } = e.target;
     setTransaction({ ...transaction, [name]: value });
+    console.log(usuData);
   };
 
   const handleCargaRapida = (e) => {
@@ -36,9 +52,9 @@ export const CargaSaldo = () => {
     setTransaction({ ...transaction, [name]: value });
   };
 
-  useEffect(() => {
+ /*  useEffect(() => {
     console.log(transaction);
-  }, [transaction]);
+  }, [transaction]); */
 
   const deposit = async () => {
     try {
