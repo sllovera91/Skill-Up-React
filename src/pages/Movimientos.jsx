@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { TableTransaction } from "../components/TableTransaction";
 import { PaginationControl } from "../components/PaginationControl";
 import { useTransactions } from "../hooks/useTransactions";
+import { Title } from "../components/Title";
 
 export const Movimientos = () => {
   const { getTransactions } = useTransactions();
@@ -13,7 +14,12 @@ export const Movimientos = () => {
   const operations = useSelector((state) => state.transactions.transactions);
 
   return (
-    <div className="App">
+    <>
+      <div className="container-fluid d-flex justify-content-center flex-column">
+        <div className="text-center m-3">
+          <Title size={"h1"}>Movimientos</Title>
+        </div>
+      </div>
       { operations && operations.length !== 0
         ? <>
           <TableTransaction operations={operations} />
@@ -24,6 +30,6 @@ export const Movimientos = () => {
           <h3>No hay movimientos</h3>
         </div>
       }
-    </div>
+    </>
   );
 };

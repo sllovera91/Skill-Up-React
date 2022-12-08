@@ -83,9 +83,11 @@ export const CargaSaldo = () => {
   };
   return (
     <>
-      <div className="text-center mt-3">
-        <Title size={"h1"}>Depositá dinero en tu cuenta</Title>
+    <div className="container-fluid d-flex justify-content-center flex-column">
+      <div className="text-center m-3">
+        <Title size={"h1"}>Carga Salgo</Title>
       </div>
+    </div>
       <div className=" d-flex flex-column flex-sm-row text-center  justify-content-center my-5 flex-wrap h-auto py-sm-5">
         <div className="col-8 col-sm-6 mb-sm-5 pb-sm-3">
           <Title size={"h4"}>Depositos rapidos</Title>

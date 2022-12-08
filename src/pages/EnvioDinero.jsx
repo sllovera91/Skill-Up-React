@@ -3,8 +3,10 @@ import { Title } from "../components/Title";
 
 export const EnvioDinero = () => {
   return (
-    <div className=" d-flex flex-column text-center justify-content-center my-5 align-items-center flex-wrap">
-      <Title size={"h1"}>Transferi dinero a tus amigos</Title>
+    <div className=" container-fluid d-flex justify-content-center flex-column">
+      <div className="text-center m-3">
+        <Title size={"h1"}>Transferi dinero a tus amigos</Title>
+      </div>
       <div className="d-flex row py-5 my-4 col-12 flex-wrap justify-content-around">
         <div className="d-flex  flex-column align-items-center  my-4 col-8 col-md-4 py-3 rounded-2  border border-secondary border-opacity-25 justify-content-center" >
           <Title size={"h4"}>Transferir con ID de cuenta</Title>
