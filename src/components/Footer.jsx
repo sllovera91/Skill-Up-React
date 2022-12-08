@@ -3,7 +3,7 @@ import icons from "../assets/icons";
 
 export const Footer = () => {
   return (
-    <footer className="text-center text-lg-start bg-light text-muted">
+    <footer className="text-center text-lg-start text-muted bg-white">
       <div className="text-center p-4">
         <div className="d-flex justify-content-center">
         <a className="text-decoration-none d-flex justify-content-center mx-4" href="https://www.linkedin.com/in/mariano-pividori-5680a051/" >

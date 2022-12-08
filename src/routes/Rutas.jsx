@@ -38,7 +38,7 @@ export const Rutas = () => {
           <Route path="Login" element={<Inicio />} />
           <Route path="Balance" element={<Balance/>} />
           <Route path="CargaSaldo" element={<CargaSaldo/>} />
-          <Route path="EnviarDinero" element={<EnvioDinero/>} />
+          <Route path="EnvioDinero" element={<EnvioDinero/>} />
           <Route path="Gastos" element={<Gastos/>} />
           <Route path="Movimientos" element={<Movimientos/>} />
           <Route path="/*" element={ < Error404 /> } />

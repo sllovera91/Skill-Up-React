@@ -8,7 +8,7 @@ export const Navbar = () => {
   const navigate = useNavigate();
 
   return (
-   <nav className="header navbar navbar-expand-md navbar-dark bg-primary ">
+   <nav className="header navbar navbar-expand-md">
     <div className="container-fluid">
 
     <Link className="navbar-brand" to="/">
