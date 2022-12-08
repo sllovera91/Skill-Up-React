@@ -5,15 +5,13 @@ const userSliceEmptyState = {
         first_name: "",
         last_name: "",
         email: "",
-        roleId: 2,
-        points: 0
+        id: undefined
     },
     acquisition: {
       balance: 0,
       payments: 0,
       topups: 0
-    },
-    jwt: ""
+    }
 };
 
 const userSlice = createSlice({
@@ -24,16 +22,10 @@ const userSlice = createSlice({
       return userSliceEmptyState;
     },
     setUser: (state, action) => {
-      return {
-        ...state.jwt,
-        user: action.payload
-      };
-    },
-    setJwt: (state, action) => {
-      return {
-        ...state.user,
-        jwt: action.payload
-      };
+      state.user.first_name = action.payload.data.first_name;
+      state.user.last_name = action.payload.data.last_name;
+      state.user.email = action.payload.data.email;
+      state.user.id = action.payload.data.id;
     },
     setBalance: (state, action) => {
       return {
@@ -44,5 +36,5 @@ const userSlice = createSlice({
   }
 });
 
-export const { resetUserState, setBalance } = userSlice.actions;
+export const { resetUserState, setBalance, setUser } = userSlice.actions;
 export default userSlice.reducer;

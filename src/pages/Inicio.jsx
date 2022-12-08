@@ -1,10 +1,17 @@
-import React from "react";
 import { Button } from "../components/Button";
 import { Title } from "../components/Title";
 import { Link } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
+import { useEffect } from "react";
 import "animate.css";
 
   export const Inicio = () => {
+    const { Login, infoUsuario } = useAuth();
+
+    useEffect(() => {
+      infoUsuario();
+    }, [Login]);
+
   return (
     <div className="Content text-center d-flex align-items-center justify-content-center mt-5 animate__animated animate__fadeIn">
     <div className="text-center">
