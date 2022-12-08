@@ -8,7 +8,7 @@ export const useTransactions = () => {
   const dispatch = useDispatch();
 
   const token = localStorage.getItem("token");
-  const Autorizacion = {
+ const Autorizacion = {
     headers: {
       Authorization: `Bearer ${token}`
     }
@@ -47,6 +47,7 @@ export const useTransactions = () => {
 
   return {
     transactions,
-    getTransactions
+    getTransactions,
+    Autorizacion
   };
 };

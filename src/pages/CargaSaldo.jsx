@@ -1,8 +1,70 @@
-import React from "react";
+/* eslint-disable comma-dangle */
+import React, { useEffect, useState } from "react";
+import Swal from "sweetalert2";
+import alkemyApi from "../api/login";
 import { Button } from "../components/Button";
 import { Title } from "../components/Title";
+import { useTransactions } from "../hooks/useTransactions";
+import transactionsSlice, {
+  setTransactions,
+} from "../redux/slices/transactions.slice";
 
 export const CargaSaldo = () => {
+  const { Autorizacion } = useTransactions();
+
+  let today = new Date();
+  today =
+    today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate(); // Returns the date in the format "Year-Month-Date" (e.g. "2021-6-21")
+  const [transaction, setTransaction] = useState({
+    amount: "",
+    concept: "",
+    date: today,
+    type: "topup",
+    accountId: 1,
+    userId: 2330,
+    to_account_id: 5,
+  });
+
+  const handleInput = (e) => {
+    const { name, value } = e.target;
+    setTransaction({ ...transaction, [name]: value });
+  };
+
+  const handleCargaRapida = (e) => {
+    const { name, value } = e.target;
+
+    setTransaction({ ...transaction, [name]: value });
+  };
+
+  useEffect(() => {
+    console.log(transaction);
+  }, [transaction]);
+
+  const deposit = async () => {
+    try {
+      const response = await alkemyApi.post(
+        "/transactions",
+        transaction,
+        Autorizacion
+      );
+      console.log(response.data);
+      Swal.fire({
+        icon: "success",
+        title: "Operación Realizada correctamente",
+        text: "",
+        footer: "",
+      });
+    } catch (error) {
+      console.log("no anduvo");
+
+      Swal.fire({
+        icon: "error",
+        title: "Algo falló, intente nuevamente mas tarde",
+        text: "",
+        footer: "",
+      });
+    }
+  };
   return (
     <>
       <div className="text-center mt-3">
@@ -14,24 +76,44 @@ export const CargaSaldo = () => {
           <div className="d-flex flex-column justify-content-center mt-5 mb-5 pb-sm-5">
             <div className="d-flex flex-column flex-sm-row justify-content-center align-items-center gap-3">
               <div className="d-flex gap-4">
-                <button className="btn btn-secondary rounded-2 border border-secondary">
+                <button
+                  name="amount"
+                  value="1000"
+                  onClick={handleCargaRapida}
+                  className="btn btn-secondary rounded-2 border border-secondary"
+                >
                   $1000
                 </button>
-                <button className="btn btn-secondary rounded-2 border border-secondary">
+                <button
+                  name="amount"
+                  value="2000"
+                  onClick={handleCargaRapida}
+                  className="btn btn-secondary rounded-2 border border-secondary"
+                >
                   $2000
                 </button>
               </div>
               <div className="d-flex gap-4">
-                <button className="btn btn-secondary rounded-2 border border-secondary">
+                <button
+                  name="amount"
+                  value="5000"
+                  onClick={handleCargaRapida}
+                  className="btn btn-secondary rounded-2 border border-secondary"
+                >
                   $5000
                 </button>
-                <button className="btn btn-secondary rounded-2 border border-secondary">
+                <button
+                  name="amount"
+                  value="10000"
+                  onClick={handleCargaRapida}
+                  className="btn btn-secondary rounded-2 border border-secondary"
+                >
                   $10000
                 </button>
               </div>
             </div>
           </div>
-            <Button>Depositar</Button>
+          <Button action={deposit}>Depositar</Button>
         </div>
         <div className="mt-4 mt-sm-0 col-8 col-sm-6 mb-sm-5 pb-sm-3">
           <div className="">
@@ -42,18 +124,22 @@ export const CargaSaldo = () => {
               concepto
             </label>
             <input
+              onChange={handleInput}
               className=" border border-1 border-secondary opacity-50  rounded-1"
               type="text"
+              name="concept"
             />
             <label className="text-secondary mt-3" htmlFor="">
               importe
             </label>
             <input
+              onChange={handleInput}
               className=" border border-1 border-secondary opacity-50  rounded-1"
               type="text"
+              name="amount"
             />
           </div>
-          <Button>Depositar</Button>
+          <Button action={deposit}>Depositar</Button>
         </div>
       </div>
     </>
