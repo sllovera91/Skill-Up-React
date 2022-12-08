@@ -1,49 +1,38 @@
-/* eslint-disable comma-dangle */
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import alkemyApi from "../api/login";
 import { Button } from "../components/Button";
 import { Title } from "../components/Title";
+import { useAuth } from "../hooks/useAuth";
 import { useTransactions } from "../hooks/useTransactions";
 
 export const CargaSaldo = () => {
+  const { id } = useSelector(state => state.user.user);
+
+  const { infoUsuario } = useAuth();
+
+  useEffect(() => {
+    infoUsuario();
+  }, []);
+
   let today = new Date();
   today =
     today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate(); // Returns the date in the format "Year-Month-Date" (e.g. "2021-6-21")
   const { Autorizacion } = useTransactions();
-  const [usuData, setUsuData] = useState("");
-  const traerDatosUsu = async () => {
-    try {
-      const response = await alkemyApi.get(
-        "/auth/me",
-        Autorizacion,
-        Autorizacion
-      );
-      console.log(response.data);
-      setUsuData(response.data.id);
-    } catch (error) {
-      console.log("no anduvo");
-    }
-  };
   const [transaction, setTransaction] = useState({
     amount: "",
     concept: "",
     date: today,
     type: "topup",
-    accountId: 1,
-    userId: usuData,
-    to_account_id: 5,
+    accountId: 2,
+    userId: 2,
+    to_account_id: 5
   });
-
-  useEffect(() => {
-    traerDatosUsu();
-    console.log(usuData);
-  }, [transaction]);
 
   const handleInput = (e) => {
     const { name, value } = e.target;
     setTransaction({ ...transaction, [name]: value });
-    console.log(usuData);
   };
 
   const handleCargaRapida = (e) => {
@@ -51,10 +40,6 @@ export const CargaSaldo = () => {
 
     setTransaction({ ...transaction, [name]: value });
   };
-
- /*  useEffect(() => {
-    console.log(transaction);
-  }, [transaction]); */
 
   const deposit = async () => {
     try {
@@ -68,7 +53,7 @@ export const CargaSaldo = () => {
         icon: "success",
         title: "Operación Realizada correctamente",
         text: "",
-        footer: "",
+        footer: ""
       });
     } catch (error) {
       console.log("no anduvo");
@@ -77,7 +62,7 @@ export const CargaSaldo = () => {
         icon: "error",
         title: "Algo falló, intente nuevamente mas tarde",
         text: "",
-        footer: "",
+        footer: ""
       });
     }
   };
