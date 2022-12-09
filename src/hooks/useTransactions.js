@@ -49,11 +49,13 @@ export const useTransactions = () => {
 
   const createOperation = async (operation, type) => {
     const userId = user?.id;
+    console.log(userId);
     if (!userId) return { error: "Intentelo mas tarde" };
 
     const operationUpdated = { ...operation, type, userId };
 
     try {
+      console.log(operationUpdated);
       const response = await alkemyApi.post(
         "/transactions",
         operationUpdated,
