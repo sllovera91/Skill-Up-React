@@ -1,33 +1,17 @@
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useState } from "react";
 import Swal from "sweetalert2";
-import alkemyApi from "../api/login";
 import { Button } from "../components/Button";
 import { Title } from "../components/Title";
-import { useAuth } from "../hooks/useAuth";
 import { useTransactions } from "../hooks/useTransactions";
+import { getFormattedDate } from "../helper/formatDate";
 
 export const CargaSaldo = () => {
-  const { id } = useSelector(state => state.user.user);
+  const { createOperation } = useTransactions();
 
-  const { infoUsuario } = useAuth();
-
-  useEffect(() => {
-    infoUsuario();
-  }, []);
-
-  let today = new Date();
-  today =
-    today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate(); // Returns the date in the format "Year-Month-Date" (e.g. "2021-6-21")
-  const { Autorizacion } = useTransactions();
   const [transaction, setTransaction] = useState({
     amount: "",
     concept: "",
-    date: today,
-    type: "topup",
-    accountId: 2,
-    userId: 2,
-    to_account_id: 5
+    date: getFormattedDate()
   });
 
   const handleInput = (e) => {
@@ -35,44 +19,33 @@ export const CargaSaldo = () => {
     setTransaction({ ...transaction, [name]: value });
   };
 
-  const handleCargaRapida = (e) => {
-    const { name, value } = e.target;
-
-    setTransaction({ ...transaction, [name]: value });
-  };
-
   const deposit = async () => {
-    try {
-      const response = await alkemyApi.post(
-        "/transactions",
-        transaction,
-        Autorizacion
-      );
-      console.log(response.data);
-      Swal.fire({
+    const res = await createOperation(transaction, "topup");
+
+    if (!res.error) {
+      return Swal.fire({
         icon: "success",
         title: "Operación Realizada correctamente",
         text: "",
         footer: ""
       });
-    } catch (error) {
-      console.log("no anduvo");
-
-      Swal.fire({
-        icon: "error",
-        title: "Algo falló, intente nuevamente mas tarde",
-        text: "",
-        footer: ""
-      });
     }
+
+    Swal.fire({
+      icon: "error",
+      title: "Algo falló, intente nuevamente mas tarde",
+      text: res.error,
+      footer: ""
+    });
   };
+
   return (
     <>
-    <div className="container-fluid d-flex justify-content-center flex-column">
-      <div className="text-center m-3">
-        <Title size={"h1"}>Carga Salgo</Title>
+      <div className="container-fluid d-flex justify-content-center flex-column">
+        <div className="text-center m-3">
+          <Title size={"h1"}>Carga Salgo</Title>
+        </div>
       </div>
-    </div>
       <div className=" d-flex flex-column flex-sm-row text-center  justify-content-center my-5 flex-wrap h-auto py-sm-5">
         <div className="col-8 col-sm-6 mb-sm-5 pb-sm-3">
           <Title size={"h4"}>Depositos rapidos</Title>
@@ -82,7 +55,7 @@ export const CargaSaldo = () => {
                 <button
                   name="amount"
                   value="1000"
-                  onClick={handleCargaRapida}
+                  onClick={handleInput}
                   className="btn btn-secondary rounded-2 border border-secondary"
                 >
                   $1000
@@ -90,7 +63,7 @@ export const CargaSaldo = () => {
                 <button
                   name="amount"
                   value="2000"
-                  onClick={handleCargaRapida}
+                  onClick={handleInput}
                   className="btn btn-secondary rounded-2 border border-secondary"
                 >
                   $2000
@@ -100,7 +73,7 @@ export const CargaSaldo = () => {
                 <button
                   name="amount"
                   value="5000"
-                  onClick={handleCargaRapida}
+                  onClick={handleInput}
                   className="btn btn-secondary rounded-2 border border-secondary"
                 >
                   $5000
@@ -108,7 +81,7 @@ export const CargaSaldo = () => {
                 <button
                   name="amount"
                   value="10000"
-                  onClick={handleCargaRapida}
+                  onClick={handleInput}
                   className="btn btn-secondary rounded-2 border border-secondary"
                 >
                   $10000
