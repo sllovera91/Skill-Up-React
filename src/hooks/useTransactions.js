@@ -6,6 +6,7 @@ import { setBalance } from '../redux/slices/user.slice';
 export const useTransactions = () => {
   const transactions = useSelector(state => state.transactions);
   const user = useSelector(state => state.user.user);
+  const { balance } = useSelector((state) => state.user.acquisition);
 
   const dispatch = useDispatch();
 
@@ -51,6 +52,10 @@ export const useTransactions = () => {
     const userId = user?.id;
     console.log(userId);
     if (!userId) return { error: 'Intentelo mas tarde' };
+
+    if (type === 'payment' && balance - operation.amount < 0) {
+      return { error: 'Saldo insuficiente' };
+    }
 
     const operationUpdated = { ...operation, type, userId };
 

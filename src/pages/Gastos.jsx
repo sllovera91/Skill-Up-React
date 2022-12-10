@@ -33,8 +33,8 @@ export const Gastos = () => {
 
     Swal.fire({
       icon: 'error',
-      title: 'Algo falló, intente nuevamente mas tarde',
-      text: res.error,
+      title: res.error || 'Algo falló, intente nuevamente mas tarde',
+      text: '',
       footer: ''
     });
   };
