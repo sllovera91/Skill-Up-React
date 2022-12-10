@@ -2,3 +2,7 @@
     right:40px;
     top:50px!important;
 }
+
+.personalized {
+ z-index:100000000;
+}

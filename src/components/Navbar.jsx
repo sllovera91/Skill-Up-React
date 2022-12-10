@@ -16,7 +16,7 @@ export const Navbar = () => {
 
   }, [first_name]);
   return (
-    <nav className="header navbar navbar-expand-md">
+    <nav className="header navbar navbar-expand-md personalized">
       <div className="container-fluid">
         <Link className="navbar-brand" to="/">
           <img

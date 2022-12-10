@@ -17,6 +17,13 @@ export const useAuth = () => {
             const { data } = await alkemyApi.post('/auth/login', { email, password });
             localStorage.setItem('token', data.accessToken);
             dispatch(onLogin());
+            const user = await alkemyApi.get("/auth/me", {
+                headers: {
+                    Authorization: `Bearer ${data.accessToken}`
+                }
+            });
+            console.log(user);
+            dispatch(setUser(user));
         } catch (error) {
             dispatch(onLogout('Usuario o Contraseña incorrecto'));
         }
