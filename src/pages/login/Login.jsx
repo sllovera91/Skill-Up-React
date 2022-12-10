@@ -33,7 +33,7 @@ export const Login = () => {
   }, [errorMessage]);
 
   return (
-    <section className="h-100">
+    <section className="h-100 animate__animated animate__fadeIn">
       <div className="container h-100">
         <div className="row justify-content-sm-center h-100">
           <div className="col-xxl-5 col-xl-6 col-lg-7 col-md-9 col-sm-12">
