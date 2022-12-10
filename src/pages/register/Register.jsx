@@ -1,16 +1,16 @@
 /* eslint-disable no-unused-vars */
-import { useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import logo from "../../assets/alkemy_logo.svg";
-import { useAuth } from "../../hooks/useAuth";
-import { useForm } from "../../hooks/useForm";
-import styles from "./Register.module.css";
+import { useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import logo from '../../assets/alkemy_logo.svg';
+import { useAuth } from '../../hooks/useAuth';
+import { useForm } from '../../hooks/useForm';
+import styles from './Register.module.css';
 
 const registerInputs = {
-  email: "",
-  password: "",
-  first_name: "",
-  last_name: ""
+  email: '',
+  password: '',
+  first_name: '',
+  last_name: ''
 };
 
 export const Register = () => {

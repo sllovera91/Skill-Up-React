@@ -23,7 +23,7 @@
         "space-before-function-paren": "off",
         "indent": ["off"],
         "linebreak-style": ["error", "windows"],
-        "quotes": ["error", "double"],
+        "quotes": "off",
         "semi": ["error", "always"],
         "react/react-in-jsx-scope": "off",
         "no-unused-vars": "warn",

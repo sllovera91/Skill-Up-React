@@ -1,6 +1,6 @@
-import React from "react";
-import { useLocation } from "react-router-dom";
-import { Transaction } from "./Transaction";
+import React from 'react';
+import { useLocation } from 'react-router-dom';
+import { Transaction } from './Transaction';
 
 export const TableTransaction = ({ operations }) => {
   const { pathname } = useLocation();
@@ -24,7 +24,7 @@ export const TableTransaction = ({ operations }) => {
                   </thead>
                   <tbody>
                     {
-                      pathname.toLocaleLowerCase() === "/balance"
+                      pathname.toLocaleLowerCase() === '/balance'
                         ? operations.slice(0, 4).map(({ concept, amount, date, type }, index) =>
                           <Transaction key={index} concept={concept} amount={amount} date={date} type={type} />)
                         : operations.map(({ concept, amount, date, type }, index) =>

@@ -1,15 +1,15 @@
-import React from "react";
-import { Title } from "../components/Title";
+import React from 'react';
+import { Title } from '../components/Title';
 
 export const EnvioDinero = () => {
   return (
     <div className=" container-fluid d-flex justify-content-center flex-column animate__animated animate__fadeIn">
       <div className="text-center m-3">
-        <Title size={"h1"}>Transferi dinero a tus amigos</Title>
+        <Title size={'h1'}>Transferi dinero a tus amigos</Title>
       </div>
-      <div className="d-flex row py-5 my-4 col-12 flex-wrap justify-content-around">
+      <div className="d-flex row py-5 my-4 col-12 flex-wrap justify-content-around ">
         <div className="d-flex  flex-column align-items-center  my-4 col-8 col-md-4 py-3 rounded-2  border border-secondary border-opacity-25 justify-content-center" >
-          <Title size={"h4"}>Transferir con ID de cuenta</Title>
+          <Title size={'h4'}>Transferir con ID de cuenta</Title>
           <label className="text-center mt-4 text-secondary" htmlFor="">
             ID de la cuenta
           </label>
@@ -33,7 +33,7 @@ export const EnvioDinero = () => {
           </div>
         </div>
         <div className="d-flex flex-column align-items-center  my-4 col-8 col-md-4 py-3 rounded-2  border border-secondary border-opacity-25  justify-content-center" >
-          <Title size={"h4"}>Transferir con mail</Title>
+          <Title size={'h4'}>Transferir con mail</Title>
           <label className="text-center mt-4 text-secondary" htmlFor="">
             Mail del usuario
           </label>

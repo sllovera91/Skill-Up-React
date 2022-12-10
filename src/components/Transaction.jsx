@@ -1,5 +1,5 @@
-import React from "react";
-import { handleDate } from "../helper/helper";
+import React from 'react';
+import { handleDate } from '../helper/helper';
 
 export const Transaction = ({ concept, amount, date, type }) => {
   return (
@@ -9,7 +9,7 @@ export const Transaction = ({ concept, amount, date, type }) => {
       ${amount}
       </td>
     <td>
-        <span className={`badge ${type === "topup" ? "bg-success" : "bg-danger"}`}>{type}</span>
+        <span className={`badge ${type === 'topup' ? 'bg-success' : 'bg-danger'}`}>{type}</span>
       </td>
     <td>
       <p className="text-secondary">{handleDate(date)}</p>

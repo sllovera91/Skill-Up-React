@@ -1,10 +1,10 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const userSliceEmptyState = {
     user: {
-        first_name: "",
-        last_name: "",
-        email: "",
+        first_name: '',
+        last_name: '',
+        email: '',
         id: undefined
     },
     acquisition: {
@@ -15,7 +15,7 @@ const userSliceEmptyState = {
 };
 
 const userSlice = createSlice({
-  name: "user",
+  name: 'user',
   initialState: userSliceEmptyState,
   reducers: {
     resetUserState: () => {

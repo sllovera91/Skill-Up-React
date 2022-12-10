@@ -1,15 +1,15 @@
 // eslint-disable-file no-use-before-define
-import { useEffect } from "react";
-import { Link } from "react-router-dom";
-import logo from "../../assets/alkemy_logo.svg";
-import { useAuth } from "../../hooks/useAuth";
-import { useForm } from "../../hooks/useForm";
-import styles from "./Login.module.css";
-import Swal from "sweetalert2";
+import { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import logo from '../../assets/alkemy_logo.svg';
+import { useAuth } from '../../hooks/useAuth';
+import { useForm } from '../../hooks/useForm';
+import styles from './Login.module.css';
+import Swal from 'sweetalert2';
 
 const loginInputs = {
-  email: "",
-  password: ""
+  email: '',
+  password: ''
 };
 
 export const Login = () => {
@@ -26,7 +26,7 @@ export const Login = () => {
     if (errorMessage !== undefined) {
       useEffect(() => {
         if (errorMessage !== undefined) {
-          Swal.fire("Tus datos no son correctos", errorMessage, "error");
+          Swal.fire('Tus datos no son correctos', errorMessage, 'error');
         }
       }, [errorMessage]);
     }

@@ -3,5 +3,5 @@ export const handleDate = (date) => {
 };
 
 export const handleConcept = (concept) => {
-  return concept.slice(0, 35).slice(12, 24).replace("curr", "").replace(/['",]+/g, "");
+  return concept.slice(0, 35).slice(12, 24).replace('curr', '').replace(/['",]+/g, '');
   };

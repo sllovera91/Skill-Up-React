@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { Navigate } from "react-router-dom";
-import { useAuth } from "../hooks/useAuth";
+import React, { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { Navigate } from 'react-router-dom';
+import { useAuth } from '../hooks/useAuth';
 
 const PrivateRoad = ({ Component, path }) => {
     const { infoUsuario } = useAuth();
@@ -15,7 +15,7 @@ const PrivateRoad = ({ Component, path }) => {
     <Component />
   )
 : (
-    <Navigate to={"/"} />
+    <Navigate to={'/'} />
   );
 };
 

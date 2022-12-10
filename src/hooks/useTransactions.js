@@ -1,15 +1,15 @@
 
-import { useDispatch, useSelector } from "react-redux";
-import alkemyApi from "../api/login";
-import { setTransactions } from "../redux/slices/transactions.slice";
-import { setBalance } from "../redux/slices/user.slice";
+import { useDispatch, useSelector } from 'react-redux';
+import alkemyApi from '../api/login';
+import { setTransactions } from '../redux/slices/transactions.slice';
+import { setBalance } from '../redux/slices/user.slice';
 export const useTransactions = () => {
   const transactions = useSelector(state => state.transactions);
   const user = useSelector(state => state.user.user);
 
   const dispatch = useDispatch();
 
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem('token');
   const Autorizacion = {
     headers: {
       Authorization: `Bearer ${token}`
@@ -18,7 +18,7 @@ export const useTransactions = () => {
 
   const getTransactions = async () => {
     try {
-      const response = await alkemyApi.get("/transactions", Autorizacion);
+      const response = await alkemyApi.get('/transactions', Autorizacion);
       const data = response.data.data;
       dispatch(setTransactions(data));
 
@@ -26,11 +26,11 @@ export const useTransactions = () => {
       let payments = 0;
 
       data.forEach(operation => {
-        if (operation.type === "payment") {
+        if (operation.type === 'payment') {
           payments += +operation.amount;
         }
 
-        if (operation.type === "topup") {
+        if (operation.type === 'topup') {
           topups += +operation.amount;
         }
       });
@@ -43,21 +43,21 @@ export const useTransactions = () => {
 
       dispatch(setBalance(acquisition));
     } catch (error) {
-      console.log("no anduvo");
+      console.log('no anduvo');
     }
   };
 
   const createOperation = async (operation, type) => {
     const userId = user?.id;
     console.log(userId);
-    if (!userId) return { error: "Intentelo mas tarde" };
+    if (!userId) return { error: 'Intentelo mas tarde' };
 
     const operationUpdated = { ...operation, type, userId };
 
     try {
       console.log(operationUpdated);
       const response = await alkemyApi.post(
-        "/transactions",
+        '/transactions',
         operationUpdated,
         Autorizacion
       );
