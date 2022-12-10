@@ -61,13 +61,13 @@ export const Navbar = () => {
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/EnvioDinero">
-                Manda Plata!
+              <NavLink className="nav-link" to="/Gastos">
+                Tus Gastos
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/Gastos">
-                Tus Gastos
+              <NavLink className="nav-link" to="/EnvioDinero">
+                Manda Plata!
               </NavLink>
             </li>
             <li className="nav-item d-flex align-items-center ">
