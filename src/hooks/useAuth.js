@@ -3,6 +3,7 @@ import alkemyApi from '../api/login';
 import { onChecking, onLogin, onLogout } from '../redux/slices/auth.Slice';
 import { setUser } from '../redux/slices/user.slice';
 import { useTransactions } from './useTransactions';
+import Swal from 'sweetalert2';
 
 export const useAuth = () => {
     const { status } = useSelector(state => state.auth);
@@ -53,7 +54,6 @@ export const useAuth = () => {
           );
           dispatch(setUser(resp));
         } catch (error) {
-          console.log('no anduvo');
         }
       };
 
