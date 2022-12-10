@@ -5,7 +5,7 @@ import { setUser } from "../redux/slices/user.slice";
 import { useTransactions } from "./useTransactions";
 
 export const useAuth = () => {
-    const { status, user, errorMsg } = useSelector(state => state.auth);
+    const { status } = useSelector(state => state.auth);
     const { email, first_name, last_name, id } = useSelector(state => state.user);
     const { Autorizacion } = useTransactions();
     const dispatch = useDispatch();
@@ -49,7 +49,6 @@ export const useAuth = () => {
         try {
           const resp = await alkemyApi.get(
             "/auth/me",
-            Autorizacion,
             Autorizacion
           );
           dispatch(setUser(resp));
@@ -61,8 +60,6 @@ export const useAuth = () => {
     return {
 
         status,
-        user,
-        errorMsg,
         email,
         first_name,
         last_name,

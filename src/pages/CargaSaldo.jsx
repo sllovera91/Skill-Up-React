@@ -1,13 +1,18 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 import { Button } from "../components/Button";
 import { Title } from "../components/Title";
 import { useTransactions } from "../hooks/useTransactions";
 import { getFormattedDate } from "../helper/formatDate";
+import { useAuth } from "../hooks/useAuth";
 
 export const CargaSaldo = () => {
   const { createOperation } = useTransactions();
+  const { infoUsuario } = useAuth();
 
+  useEffect(() => {
+    infoUsuario();
+  }, []);
   const [transaction, setTransaction] = useState({
     amount: "",
     concept: "",
@@ -21,20 +26,21 @@ export const CargaSaldo = () => {
 
   const deposit = async () => {
     const res = await createOperation(transaction, "topup");
-
-    if (!res.error) {
-      return Swal.fire({
-        icon: "success",
-        title: "Operación Realizada correctamente",
-        text: "",
+    console.log(res);
+    if (res.error) {
+      Swal.fire({
+        icon: "error",
+        title: "Algo falló, intente nuevamente mas tarde",
+        text: res.error,
         footer: ""
       });
+      return;
     }
 
     Swal.fire({
-      icon: "error",
-      title: "Algo falló, intente nuevamente mas tarde",
-      text: res.error,
+      icon: "success",
+      title: "Operación Realizada correctamente",
+      text: "",
       footer: ""
     });
   };

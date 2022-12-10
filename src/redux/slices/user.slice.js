@@ -29,7 +29,7 @@ const userSlice = createSlice({
     },
     setBalance: (state, action) => {
       return {
-        ...state.acquisition,
+        ...state,
         acquisition: action.payload
       };
     }
