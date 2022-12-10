@@ -16,7 +16,7 @@ export const CargaSaldo = () => {
   let today = new Date();
   today =
     today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate(); // Returns the date in the format "Year-Month-Date" (e.g. "2021-6-21")
-  const { Autorizacion } = useTransactions();
+  const { createOperation } = useTransactions();
   const [transaction, setTransaction] = useState({
     amount: "",
     concept: "",
@@ -39,29 +39,23 @@ export const CargaSaldo = () => {
   };
 
   const deposit = async () => {
-    try {
-      const response = await alkemyApi.post(
-        "/transactions",
-        transaction,
-        Autorizacion
-      );
-      console.log(response.data);
-      Swal.fire({
+    const res = await createOperation(transaction, "topup");
+
+    if (!res.error) {
+      return Swal.fire({
         icon: "success",
         title: "Operación Realizada correctamente",
         text: "",
         footer: ""
       });
-    } catch (error) {
-      console.log("no anduvo");
-
-      Swal.fire({
-        icon: "error",
-        title: "Algo falló, intente nuevamente mas tarde",
-        text: "",
-        footer: ""
-      });
     }
+
+    Swal.fire({
+      icon: "error",
+      title: "Algo falló, intente nuevamente mas tarde",
+      text: res.error,
+      footer: ""
+    });
   };
   return (
     <>
