@@ -1,7 +1,7 @@
-import React from "react";
-import { Button } from "../components/Button";
-import { Title } from "../components/Title";
-import { Link } from "react-router-dom";
+import React from 'react';
+import { Button } from '../components/Button';
+import { Title } from '../components/Title';
+import { Link } from 'react-router-dom';
 
 export const Error404 = () => {
   return (

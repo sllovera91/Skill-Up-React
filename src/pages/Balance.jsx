@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
-import { Title } from "../components/Title";
-import { TableTransaction } from "../components/TableTransaction";
-import { useSelector } from "react-redux";
-import { useTransactions } from "../hooks/useTransactions";
+import React, { useEffect } from 'react';
+import { Title } from '../components/Title';
+import { TableTransaction } from '../components/TableTransaction';
+import { useSelector } from 'react-redux';
+import { useTransactions } from '../hooks/useTransactions';
 export const Balance = () => {
   const { getTransactions } = useTransactions();
   useEffect(() => {
@@ -15,9 +15,9 @@ export const Balance = () => {
   return (
 
     <>
-      <div className="container-fluid d-flex justify-content-center flex-column">
+      <div className="container-fluid d-flex justify-content-center flex-column animate__animated animate__fadeIn">
         <div className="text-center m-3">
-          <Title size={"h1"}>Balance</Title>
+          <Title size={'h1'}>Balance</Title>
         </div>
         <div className="d-flex justify-content-evenly">
           <div className="col-lg-2">
@@ -53,7 +53,7 @@ export const Balance = () => {
       </div>
 
       <div className="text-center mt-3 block">
-        <Title size={"h3"}>Ultimos movimientos</Title>
+        <Title size={'h3'}>Ultimos movimientos</Title>
       </div>
       {operations && operations.length !== 0
         ? <TableTransaction operations={operations} />

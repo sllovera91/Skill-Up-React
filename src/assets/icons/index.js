@@ -1,4 +1,4 @@
-import linkedin from "./linkedin.png";
+import linkedin from './linkedin.png';
 
 const images = {
   linkedin

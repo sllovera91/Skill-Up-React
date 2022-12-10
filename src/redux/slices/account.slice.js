@@ -1,9 +1,9 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const accountSliceEmptyState = {};
 
 const accountSlice = createSlice({
-  name: "account",
+  name: 'account',
   initialState: accountSliceEmptyState,
   reducers: {
     resetAccountState: () => {

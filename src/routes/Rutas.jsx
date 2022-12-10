@@ -1,12 +1,12 @@
-import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
-import { Login } from "../pages/login/Login";
-import { WithNavBar } from "./layout/WithNavBar";
-import { Inicio, Balance, CargaSaldo, EnvioDinero, Gastos, Movimientos, Error404 } from "../pages";
-import { useEffect } from "react";
-import { useAuth } from "../hooks/useAuth";
-import { Register } from "../pages/register/Register";
-import { Title } from "../components/Title";
-import "../App.css";
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+import { Login } from '../pages/login/Login';
+import { WithNavBar } from './layout/WithNavBar';
+import { Inicio, Balance, CargaSaldo, EnvioDinero, Gastos, Movimientos, Error404 } from '../pages';
+import { useEffect } from 'react';
+import { useAuth } from '../hooks/useAuth';
+import { Register } from '../pages/register/Register';
+import { Title } from '../components/Title';
+import '../App.css';
 
 export const Rutas = () => {
   const { status, verifToken, infoUsuario } = useAuth();
@@ -16,12 +16,12 @@ export const Rutas = () => {
     infoUsuario();
   }, []);
 
-  if (status === "validando") {
+  if (status === 'validando') {
     return (
       <div className="d-flex flex-column mt-5 pt-5 justify-content-center align-items-center w-100 h-100 col-12">
       <div className="mt-4">
 
-      <Title size={"h1"}>Cargando</Title>
+      <Title size={'h1'}>Cargando</Title>
       </div>
       <span className="loader col-12 mt-5 pt-5"></span>
     </div>
@@ -33,7 +33,7 @@ export const Rutas = () => {
   <BrowserRouter>
     <Routes>
     {
-       (status === "validado")
+       (status === 'validado')
       ? <Route path='/' element={<WithNavBar/>}>
           <Route index element ={<Inicio/>}/>
           <Route path="Login" element={<Inicio />} />

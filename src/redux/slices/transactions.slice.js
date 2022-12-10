@@ -1,11 +1,11 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const transactionsSliceEmptyState = {
   transactions: []
 };
 
 const transactionsSlice = createSlice({
-  name: "transactions",
+  name: 'transactions',
   initialState: transactionsSliceEmptyState,
   reducers: {
     resetTransactionsState: () => {

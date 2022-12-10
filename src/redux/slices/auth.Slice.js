@@ -1,22 +1,22 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 export const authSlice = createSlice({
-  name: "auth",
+  name: 'auth',
   initialState: {
-    status: "validando",
+    status: 'validando',
     errorMsg: undefined
   },
   reducers: {
     onChecking: (state) => {
-      state.status = "validando";
+      state.status = 'validando';
       state.errorMsg = undefined;
     },
     onLogin: (state, action) => {
-      state.status = "validado";
+      state.status = 'validado';
       state.errorMsg = undefined;
     },
     onLogout: (state, action) => {
-        state.status = "no-validado";
+        state.status = 'no-validado';
         state.errorMsg = action.payload;
   }
     }

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 export const useForm = (initialForm = {}) => {
     const [formState, setFormState] = useState(initialForm);
@@ -19,6 +19,5 @@ export const useForm = (initialForm = {}) => {
         ...formState,
         formState,
         onInputChange
-
     };
 };

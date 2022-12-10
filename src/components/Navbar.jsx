@@ -1,6 +1,6 @@
 
-import { Link, NavLink, useNavigate } from "react-router-dom";
-import { useAuth } from "../hooks/useAuth";
+import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { useAuth } from '../hooks/useAuth';
 
 export const Navbar = () => {
   const { Logout } = useAuth();
@@ -42,7 +42,7 @@ export const Navbar = () => {
           <NavLink className="nav-link" to="/Gastos">Tus Gastos</NavLink>
         </li>
         <li className="nav-item">
-          <Link to={"/"} className="nav-link" onClick={Logout}>Salir</Link>
+          <Link to={'/'} className="nav-link" onClick={Logout}>Salir</Link>
         </li>
 
       </ul>
