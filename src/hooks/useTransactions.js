@@ -1,11 +1,13 @@
 
 import { useDispatch, useSelector } from 'react-redux';
 import alkemyApi from '../api/login';
+import { setAccountInformation } from '../redux/slices/account.slice';
 import { setTransactions } from '../redux/slices/transactions.slice';
 import { setBalance } from '../redux/slices/user.slice';
 export const useTransactions = () => {
   const transactions = useSelector(state => state.transactions);
   const user = useSelector(state => state.user.user);
+  const { informacion } = useSelector(state => state.account);
 
   const dispatch = useDispatch();
 
@@ -21,26 +23,14 @@ export const useTransactions = () => {
       const response = await alkemyApi.get('/transactions', Autorizacion);
       const data = response.data.data;
       dispatch(setTransactions(data));
-
-      let topups = 0;
-      let payments = 0;
-
-      data.forEach(operation => {
-        if (operation.type === 'payment') {
-          payments += +operation.amount;
-        }
-
-        if (operation.type === 'topup') {
-          topups += +operation.amount;
-        }
-      });
-
+      const topups = data.filter((item) => item.type === "topup").reduce((prev, curr) => prev + Number(curr.amount), 0);
+      const payments = data.filter((item) => item.type === "payment").reduce((prev, curr) => prev + Number(curr.amount), 0);
+      const balance = topups - payments;
       const acquisition = {
-        balance: topups - payments,
+        balance,
         payments,
         topups
       };
-
       dispatch(setBalance(acquisition));
     } catch (error) {
       console.log('no anduvo');
@@ -67,10 +57,18 @@ export const useTransactions = () => {
     }
   };
 
+  const createTransaction = async ({ receptorId, description, amount }) => {
+    await alkemyApi.post(`accounts/${receptorId}`, {
+      type: "payment",
+      concept: description,
+      amount
+    }, Autorizacion);
+  };
   return {
     transactions,
     getTransactions,
     createOperation,
-    Autorizacion
+    Autorizacion,
+    createTransaction
   };
 };

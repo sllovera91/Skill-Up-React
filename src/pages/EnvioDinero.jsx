@@ -1,7 +1,22 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Title } from '../components/Title';
+import { useForm } from '../hooks/useForm';
+import { useTransactions } from '../hooks/useTransactions';
 
 export const EnvioDinero = () => {
+  const [transaction, setTransaction] = useState({
+    receptorId: '',
+    description: '',
+    amount: ''
+  });
+  const { receptorId, description, amount } = transaction;
+ const { createTransaction } = useTransactions();
+
+ const onInputChange = (e) => {
+  const { name, value } = e.target;
+  setTransaction({ ...transaction, [name]: value });
+ };
+
   return (
     <div className=" container-fluid d-flex justify-content-center flex-column animate__animated animate__fadeIn">
       <div className="text-center m-3">
@@ -16,8 +31,21 @@ export const EnvioDinero = () => {
           <input
             className=" my-4 border border-1 border-secondary opacity-50  rounded-1 "
             type="number"
-            name=""
+            name="receptorId"
             id=""
+            value= {receptorId}
+            onChange={onInputChange}
+          />
+          <label className="text-center mt-4 text-secondary" htmlFor="">
+            Descripcion
+          </label>
+          <input
+            className=" my-4 border border-1 border-secondary opacity-50  rounded-1 "
+            type="text"
+            name="description"
+            id=""
+            value={description}
+            onChange={onInputChange}
           />
           <label className="text-center text-secondary" htmlFor="">
             importe a transferir
@@ -25,11 +53,13 @@ export const EnvioDinero = () => {
           <input
             className=" my-4 border border-1 border-secondary opacity-50  rounded-1 "
             type="number"
-            name=""
+            name="amount"
             id=""
+            value={amount}
+            onChange={onInputChange}
           />
           <div className="">
-            <button className="btn btn-primary ms-auto">Transferir</button>
+            <button onClick={() => createTransaction(transaction)} className="btn btn-primary ms-auto">Transferir</button>
           </div>
         </div>
         <div className="d-flex flex-column align-items-center  my-4 col-8 col-md-4 py-3 rounded-2  border border-secondary border-opacity-25  justify-content-center" >

@@ -14,7 +14,8 @@ const store = configureStore({
     rootReducer,
     auth: authSlice.reducer,
     transactions: transactionsSlice,
-    user: userSlice
+    user: userSlice,
+    account: accountSlice
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
