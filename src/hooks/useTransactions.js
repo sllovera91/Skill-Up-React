@@ -1,7 +1,7 @@
 
 import { useDispatch, useSelector } from 'react-redux';
 import alkemyApi from '../api/login';
-import { setTransactions } from '../redux/slices/transactions.slice';
+import { setTransactions, setPage } from '../redux/slices/transactions.slice';
 import { setBalance } from '../redux/slices/user.slice';
 export const useTransactions = () => {
   const transactions = useSelector(state => state.transactions);
@@ -17,11 +17,16 @@ export const useTransactions = () => {
     }
   };
 
-  const getTransactions = async () => {
+  const getTransactions = async (page = 1) => {
     try {
-      const response = await alkemyApi.get('/transactions', Autorizacion);
+      const response = await alkemyApi.get(`/transactions/?page=${page}`, Autorizacion);
       const data = response.data.data;
+      const nextPage = response.data.nextPage;
+
       dispatch(setTransactions(data));
+
+      if (nextPage) dispatch(setPage(true));
+      else dispatch(setPage(false));
 
       let topups = 0;
       let payments = 0;
