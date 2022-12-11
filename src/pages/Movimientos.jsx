@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { TableTransaction } from '../components/TableTransaction';
 import { PaginationControl } from '../components/PaginationControl';
@@ -6,12 +6,14 @@ import { useTransactions } from '../hooks/useTransactions';
 import { Title } from '../components/Title';
 
 export const Movimientos = () => {
+  const [page, setPage] = useState(1);
   const { getTransactions } = useTransactions();
-  useEffect(() => {
-    getTransactions();
-  }, []);
 
-  const operations = useSelector((state) => state.transactions.transactions);
+  useEffect(() => {
+    getTransactions(page);
+  }, [page]);
+
+  const { transactions: operations, nextPage } = useSelector((state) => state.transactions);
 
   return (
     <>
@@ -23,10 +25,10 @@ export const Movimientos = () => {
       { operations && operations.length !== 0
         ? <>
           <TableTransaction operations={operations} />
-          <PaginationControl/>
+          <PaginationControl page={page} setPage={setPage} nextPage={nextPage}/>
         </>
-        : <div className="page mx-auto text-center w-auto">
-          <img className="rounded-circle" width="600" height="600" src="https://img.freepik.com/free-vector/no-data-concept-illustration_114360-536.jpg?w=826&t=st=1670198889~exp=1670199489~hmac=7138bd0b752b975b0a174529054e4a7919f58781eea7663f77a983f59482c240" />
+        : <div className="mx-auto text-center w-auto">
+          <img className="rounded-lg" width="600" height="600" src="https://img.freepik.com/free-vector/no-data-concept-illustration_114360-536.jpg?w=826&t=st=1670198889~exp=1670199489~hmac=7138bd0b752b975b0a174529054e4a7919f58781eea7663f77a983f59482c240" />
           <h3>No hay movimientos</h3>
         </div>
       }

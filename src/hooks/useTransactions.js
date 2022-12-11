@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* eslint-disable comma-dangle */
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,6 +10,18 @@ import { setBalance } from "../redux/slices/user.slice";
 export const useTransactions = () => {
   const transactions = useSelector((state) => state.transactions);
   const user = useSelector((state) => state.user.user);
+=======
+
+import { useDispatch, useSelector } from 'react-redux';
+import alkemyApi from '../api/login';
+import { setTransactions, setPage } from '../redux/slices/transactions.slice';
+import { setBalance } from '../redux/slices/user.slice';
+export const useTransactions = () => {
+  const transactions = useSelector(state => state.transactions);
+  const user = useSelector(state => state.user.user);
+  const { balance } = useSelector((state) => state.user.acquisition);
+
+>>>>>>> develop
   const dispatch = useDispatch();
   const [receptorIdUser, setReceptorIdUser] = useState(null);
   const [receptorName, setReceptorName] = useState(null);
@@ -20,11 +33,18 @@ export const useTransactions = () => {
     },
   };
 
-  const getTransactions = async () => {
+  const getTransactions = async (page = 1) => {
     try {
+<<<<<<< HEAD
       const response = await alkemyApi.get("/transactions", Autorizacion);
+=======
+      const response = await alkemyApi.get(`/transactions/?page=${page}`, Autorizacion);
+>>>>>>> develop
       const data = response.data.data;
+      const nextPage = response.data.nextPage;
+
       dispatch(setTransactions(data));
+<<<<<<< HEAD
       const topups = data
         .filter((item) => item.type === "topup")
         .reduce((prev, curr) => prev + Number(curr.amount), 0);
@@ -32,6 +52,25 @@ export const useTransactions = () => {
         .filter((item) => item.type === "payment")
         .reduce((prev, curr) => prev + Number(curr.amount), 0);
       const balance = topups - payments;
+=======
+
+      if (nextPage) dispatch(setPage(true));
+      else dispatch(setPage(false));
+
+      let topups = 0;
+      let payments = 0;
+
+      data.forEach(operation => {
+        if (operation.type === 'payment') {
+          payments += +operation.amount;
+        }
+
+        if (operation.type === 'topup') {
+          topups += +operation.amount;
+        }
+      });
+
+>>>>>>> develop
       const acquisition = {
         balance,
         payments,
@@ -47,6 +86,10 @@ export const useTransactions = () => {
     const userId = user?.id;
     console.log(userId);
     if (!userId) return { error: "Intentelo mas tarde" };
+
+    if (type === 'payment' && balance - operation.amount < 0) {
+      return { error: 'Saldo insuficiente' };
+    }
 
     const operationUpdated = { ...operation, type, userId };
 
