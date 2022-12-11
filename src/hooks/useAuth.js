@@ -72,6 +72,11 @@ export const useAuth = () => {
       window.location = "/";
     } catch (error) {
       dispatch(onLogout());
+      Swal.fire(
+        'Usuario duplicado',
+        'Intente nuevamente con otro mail',
+        'error'
+      );
     }
   };
 
