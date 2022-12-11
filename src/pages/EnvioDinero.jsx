@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Title } from '../components/Title';
 import { useTransactions } from '../hooks/useTransactions';
 
@@ -15,6 +15,9 @@ export const EnvioDinero = () => {
   const { name, value } = e.target;
   setTransaction({ ...transaction, [name]: value });
  };
+
+ useEffect(() => {
+ }, [receptorId]);
 
   return (
     <div className=" container-fluid d-flex pt-4 justify-content-center flex-column animate__animated animate__fadeIn">
