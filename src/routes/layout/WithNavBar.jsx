@@ -8,7 +8,7 @@ export const WithNavBar = () => {
       <Navbar />
     </div>
 
-      <div className="page">
+      <div className="page h-75">
         <Outlet />
       </div>
       <Footer/>

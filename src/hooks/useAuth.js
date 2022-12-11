@@ -57,7 +57,7 @@ export const useAuth = () => {
         "/accounts",
         {
           creationDate: getFormattedDate(),
-          money: 0,
+          money: 100000,
           isBlocked: false,
           userId: res.data.id
         },

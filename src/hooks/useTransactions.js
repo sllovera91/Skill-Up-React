@@ -1,14 +1,11 @@
 
 import { useDispatch, useSelector } from 'react-redux';
 import alkemyApi from '../api/login';
-import { setAccountInformation } from '../redux/slices/account.slice';
 import { setTransactions } from '../redux/slices/transactions.slice';
 import { setBalance } from '../redux/slices/user.slice';
 export const useTransactions = () => {
   const transactions = useSelector(state => state.transactions);
   const user = useSelector(state => state.user.user);
-  const { informacion } = useSelector(state => state.account);
-
   const dispatch = useDispatch();
 
   const token = localStorage.getItem('token');
@@ -58,11 +55,16 @@ export const useTransactions = () => {
   };
 
   const createTransaction = async ({ receptorId, description, amount }) => {
-    await alkemyApi.post(`accounts/${receptorId}`, {
-      type: "payment",
-      concept: description,
-      amount
-    }, Autorizacion);
+    try {
+    const resPost = await alkemyApi.post(`/accounts/${receptorId}`, {
+        type: "payment",
+        concept: description,
+        amount: Number(amount)
+      }, Autorizacion);
+      console.log(resPost.data);
+    } catch (error) {
+      console.log("no anduvo");
+    }
   };
   return {
     transactions,
