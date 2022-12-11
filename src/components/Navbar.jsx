@@ -71,7 +71,7 @@ export const Navbar = () => {
               </NavLink>
             </li>
             <li className="nav-item d-flex align-items-center ">
-              <img className="mt-1"
+              <img className="mb-1"
               role="button"
                 src={icons.userIcon}
                 alt="userIcon"

@@ -46,6 +46,11 @@
 
 }
 
+.covert {
+  margin-bottom: 2rem;
+  justify-items: center;
+}
+
 
 .App-header {
   background-color: #ffffff;
@@ -63,11 +68,69 @@
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
+i {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+
+@media (max-width: 1000px) {
+* {
+  font-size: 2vh;
+}
+
+.covert {
+  margin-bottom: 2rem;
+}
+
+.landiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+}
+.landiv2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+.landiv3 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 0 0;
+
+}
+
+.cardLand {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.landing {
+  display: flex;
+}
+
+  
+}
+
 
 @media (min-width: 768px) {
   .page {
     height: 87vh;
   }
+  
+}
+
+@media (min-width: 768px) {
+  .page {
+    height: 87vh;
+  }
+  
 }
 
 @media (min-width: 768px) {
