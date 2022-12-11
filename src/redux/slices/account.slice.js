@@ -1,21 +1,21 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const accountSliceEmptyState = {};
+const accountSliceEmptyState = {
+  informacion: null
+};
 
 const accountSlice = createSlice({
   name: 'account',
   initialState: accountSliceEmptyState,
   reducers: {
-    resetAccountState: () => {
-      return accountSliceEmptyState;
-    },
-    setAccount: (_, action) => {
+    setAccountInformation: (state, action) => {
       return {
-        ...action.payload
+        ...state,
+        informacion: action.payload
       };
     }
   }
 });
 
-export const { resetAccountState } = accountSlice.actions;
+export const { setAccountInformation } = accountSlice.actions;
 export default accountSlice.reducer;
