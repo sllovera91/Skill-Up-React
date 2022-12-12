@@ -1,9 +1,14 @@
 import React, { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Title } from '../components/Title';
 import { TableTransaction } from '../components/TableTransaction';
 import { useSelector } from 'react-redux';
 import { useTransactions } from '../hooks/useTransactions';
+import icons from "../assets/icons";
+
 export const Balance = () => {
+  const { pathname } = useLocation();
+
   const { getTransactions } = useTransactions();
   useEffect(() => {
     getTransactions();
@@ -56,10 +61,12 @@ export const Balance = () => {
         <Title size={'h3'}>Ultimos movimientos</Title>
       </div>
       {operations && operations.length !== 0
-        ? <TableTransaction operations={operations} />
-        : <div className="page mx-auto text-center w-auto animate__animated animate__fadeIn pb-3">
-          <img width="250" height="250" src="https://img.freepik.com/free-vector/no-data-concept-illustration_114360-536.jpg?w=826&t=st=1670198889~exp=1670199489~hmac=7138bd0b752b975b0a174529054e4a7919f58781eea7663f77a983f59482c240" />
+        ? <TableTransaction operations={operations} page={pathname.toLocaleLowerCase()} />
+        : <div className="d-flex row  col-12 flex-wrap justify-content-around ">
+        <div className="d-flex bg-white flex-column align-items-center  my-4 col-8 col-md-4 py-3 rounded-2  border border-secondary border-opacity-25 justify-content-center" >
+        <img width="200px" height="200px" className="img-fluid" src={icons.nodata} />
           <h3>No hay movimientos</h3>
+        </div>
         </div>
       }
 
