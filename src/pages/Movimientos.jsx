@@ -27,7 +27,7 @@ export const Movimientos = () => {
           <TableTransaction operations={operations} />
           <PaginationControl page={page} setPage={setPage} nextPage={nextPage}/>
         </>
-        : <div className="mx-auto text-center w-auto">
+        : <div className="mx-auto text-center w-auto animate__animated animate__fadeIn">
           <img className="rounded-lg" width="600" height="600" src="https://img.freepik.com/free-vector/no-data-concept-illustration_114360-536.jpg?w=826&t=st=1670198889~exp=1670199489~hmac=7138bd0b752b975b0a174529054e4a7919f58781eea7663f77a983f59482c240" />
           <h3>No hay movimientos</h3>
         </div>
