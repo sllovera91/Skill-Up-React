@@ -6,7 +6,7 @@ export const TableTransaction = ({ operations }) => {
   const { pathname } = useLocation();
 
   return (
-    <section className="intro animate__animated animate__fadeIn">
+    <section className="intro animate__animated animate__fadeIn pb-3">
       <div className="gradient-custom-1 h-100">
         <div className="mask d-flex align-items-center h-100  ">
           <div className="container bg-white">

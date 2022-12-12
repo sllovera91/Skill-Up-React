@@ -15,7 +15,7 @@ export const Balance = () => {
   return (
 
     <>
-      <div className="container-fluid d-flex justify-content-center flex-column animate__animated animate__fadeIn">
+      <div className="container-fluid d-flex justify-content-center flex-column animate__animated animate__fadeIn pb-3">
         <div className="text-center m-3">
           <Title size={'h1'}>Balance</Title>
         </div>
@@ -52,12 +52,12 @@ export const Balance = () => {
         </div>
       </div>
 
-      <div className="text-center mt-3 block">
+      <div className="text-center mt-3 block pb-3">
         <Title size={'h3'}>Ultimos movimientos</Title>
       </div>
       {operations && operations.length !== 0
         ? <TableTransaction operations={operations} />
-        : <div className="page mx-auto text-center w-auto animate__animated animate__fadeIn">
+        : <div className="page mx-auto text-center w-auto animate__animated animate__fadeIn pb-3">
           <img width="250" height="250" src="https://img.freepik.com/free-vector/no-data-concept-illustration_114360-536.jpg?w=826&t=st=1670198889~exp=1670199489~hmac=7138bd0b752b975b0a174529054e4a7919f58781eea7663f77a983f59482c240" />
           <h3>No hay movimientos</h3>
         </div>
