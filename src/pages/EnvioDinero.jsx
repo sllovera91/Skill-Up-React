@@ -25,7 +25,7 @@ export const EnvioDinero = () => {
         <Title size={'h1'}>Transferi dinero a tus amigos</Title>
       </div>
       <div className="d-flex row  col-12 flex-wrap justify-content-around ">
-        <div className="d-flex  flex-column align-items-center  my-4 col-8 col-md-4 py-3 rounded-2  border border-secondary border-opacity-25 justify-content-center" >
+        <div className="d-flex bg-white  flex-column align-items-center  my-4 col-8 col-md-4 py-3 rounded-2  border border-secondary border-opacity-25 justify-content-center" >
           <Title size={'h4'}>Transferir con ID de cuenta</Title>
           <label className="text-center mt-4 text-secondary" htmlFor="">
             ID de la cuenta

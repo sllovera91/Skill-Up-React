@@ -58,14 +58,14 @@ export const CargaSaldo = () => {
   };
   return (
     <>
-      <div className="text-center mt-3">
+      <div className="text-center pt-3 animate__animated animate__fadeIn">
         <Title size={"h1"}>Depositá dinero en tu cuenta</Title>
       </div>
-      <div className=" d-flex flex-column flex-sm-row text-center  justify-content-center my-5 flex-wrap h-auto py-sm-5">
-        <div className="col-8 col-sm-6 mb-sm-5  pb-sm-3">
+      <div className=" d-flex flex-column flex-sm-row text-center justify-content-center  justify-content-sm-around my-5 flex-wrap h-auto py-sm-5 animate__animated animate__fadeIn pb-5 pb-sm-0">
+        <div className="col-8 mx-auto mx-sm-0 bg-white col-sm-5 rounded-2 p-3 border border-secondary border-opacity-25 mb-sm-5 pb-sm-3">
           <Title size={"h4"}>Depositos rapidos</Title>
-          <div className="d-flex flex-column justify-content-center mt-5 mb-5 pb-sm-5">
-            <div className="d-flex flex-column flex-sm-row justify-content-center align-items-center gap-3">
+          <div className="d-flex  flex-column justify-content-center mt-5 mb-5 pb-sm-5">
+            <div className="d-flex flex-column flex-sm-row justify-content-center align-items-center gap-3 mb-5 pb-4">
               <div className="d-flex gap-4">
                 <button
                   name="amount"
@@ -106,31 +106,33 @@ export const CargaSaldo = () => {
           </div>
           <Button action={deposit}>Depositar</Button>
         </div>
-        <div className="mt-4 mt-sm-0 col-8 col-sm-6 mb-sm-5 pb-sm-3">
+        <div className="mt-4 mt-sm-0 mx-auto mx-sm-0 col-8 col-sm-5 mb-sm-5 p-3 border border-secondary border-opacity-25 bg-white pb-sm-3 rounded-2">
           <div className="">
             <Title size={"h4"}>Deposito personalizado</Title>
           </div>
-          <div className="d-flex flex-column align-items-center mb-5 pb-sm-5">
-            <label className="text-secondary" htmlFor="">
-              concepto
+          <div className="d-flex flex-column align-items-center mb-5 pb-sm-5 pt-3">
+            <label className="text-secondary pb-3" htmlFor="">
+              Concepto
             </label>
             <input
               onChange={handleInput}
-              className=" border border-1 border-secondary opacity-50  rounded-1"
+              className=" border border-1 border-secondary opacity-50  rounded-1 pb-2"
               type="text"
               name="concept"
             />
-            <label className="text-secondary mt-3" htmlFor="">
-              importe
+            <label className="text-secondary mt-1 pb-2" htmlFor="">
+              Importe
             </label>
             <input
               onChange={handleInput}
-              className=" border border-1 border-secondary opacity-50  rounded-1"
+              className=" border border-1 border-secondary opacity-50  rounded-1 pb-2"
               type="number"
               name="amount"
             />
           </div>
-          <Button action={deposit}>Depositar</Button>
+          <div className="">
+            <Button action={deposit}>Depositar</Button>
+          </div>
         </div>
       </div>
     </>
