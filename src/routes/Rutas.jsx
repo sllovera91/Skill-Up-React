@@ -47,7 +47,7 @@ export const Rutas = () => {
       </Route>
       : (
             <>
-          <Route path="/" element={<Login />} />
+          <Route path="/*" element={<Login />} />
           <Route path="/Register" element={ <Register />} />
           </>
           )
