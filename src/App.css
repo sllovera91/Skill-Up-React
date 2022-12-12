@@ -73,6 +73,24 @@ i {
   margin-bottom: 2rem;
 }
 
+.labelth {
+  width: 5.4em;
+}
+
+@media (min-width: 1000px) {
+  .tableth {
+    display: flex
+  }
+
+  .tablemin {
+    min-height: 38em;
+  }
+
+  .labelth {
+    width: 9em;
+  }
+}
+
 
 @media (max-width: 1000px) {
 * {

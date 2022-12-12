@@ -4,6 +4,7 @@ import { TableTransaction } from '../components/TableTransaction';
 import { PaginationControl } from '../components/PaginationControl';
 import { useTransactions } from '../hooks/useTransactions';
 import { Title } from '../components/Title';
+import icons from "../assets/icons";
 
 export const Movimientos = () => {
   const [page, setPage] = useState(1);
@@ -22,15 +23,17 @@ export const Movimientos = () => {
           <Title size={'h1'}>Movimientos</Title>
         </div>
       </div>
-      { operations && operations.length !== 0
+      {operations && operations.length !== 0
         ? <>
           <TableTransaction operations={operations} />
-          <PaginationControl page={page} setPage={setPage} nextPage={nextPage}/>
+          <PaginationControl page={page} setPage={setPage} nextPage={nextPage} />
         </>
-        : <div className="mx-auto text-center w-auto animate__animated animate__fadeIn">
-          <img className="rounded-lg" width="600" height="600" src="https://img.freepik.com/free-vector/no-data-concept-illustration_114360-536.jpg?w=826&t=st=1670198889~exp=1670199489~hmac=7138bd0b752b975b0a174529054e4a7919f58781eea7663f77a983f59482c240" />
+        : <div className="d-flex row col-12 flex-wrap justify-content-around ">
+        <div className="d-flex px-5 bg-white flex-column align-items-center  my-4 col-8 col-md-3 py-3 rounded-2 border border-secondary border-opacity-25 justify-content-center" >
+        <img className="img-fluid" src={icons.nodata} />
           <h3>No hay movimientos</h3>
         </div>
+      </div>
       }
     </>
   );

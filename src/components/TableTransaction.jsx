@@ -13,14 +13,13 @@ const options = [
   }
 ];
 
-export const TableTransaction = ({ operations }) => {
+export const TableTransaction = ({ operations, page }) => {
   const [typeFilter, setTypeFilter] = useState('payment/topup');
-  const { pathname } = useLocation();
 
   return (
     <section className="intro animate__animated animate__fadeIn pb-3">
       <div className="gradient-custom-1 h-100">
-        <div className="mask d-flex tabletest  ">
+        <div className={`mask d-flex  ${page !== '/balance' ? 'tablemin' : ''}  `}>
           <div className="container bg-white">
             <div className="row justify-content-center">
               <div className="col-12">
@@ -33,7 +32,7 @@ export const TableTransaction = ({ operations }) => {
                       <th className="tableth">
                         <p className="mx-3 mb-0 align-bottom">TIPO</p>
                         {
-                          pathname.toLocaleLowerCase() !== '/balance'
+                          page !== '/balance'
                             ? <select onChange={({ target }) => setTypeFilter(target.value)} className="form-select-sm mb-0 labelth " aria-label=".form-select-sm example">
                               <option value={'payment/topup'} selected>PAYMENT/TOPUP</option>
                               {options.map((option) => (
@@ -48,7 +47,7 @@ export const TableTransaction = ({ operations }) => {
                   </thead>
                   <tbody>
                     {
-                      pathname.toLocaleLowerCase() === '/balance'
+                      page === '/balance'
                         ? operations.slice(0, 4).map(({ concept, amount, date, type }, index) =>
                           <Transaction key={index} concept={concept} amount={amount} date={date} type={type} />)
                         : operations
