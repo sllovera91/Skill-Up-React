@@ -35,6 +35,11 @@ export const useAuth = () => {
       dispatch(setUser(user));
       dispatch(setAccountInformation(account.data));
     } catch (error) {
+      Swal.fire(
+        'Credenciales incorrectas',
+        'Revise los datos ingresados e intente nuevamente',
+        'error'
+      );
       dispatch(onLogout("Usuario o Contraseña incorrecto"));
     }
   };
@@ -67,11 +72,23 @@ export const useAuth = () => {
           }
         }
       );
+      Swal.fire({
+        position: 'center',
+        icon: 'success',
+        title: 'Cuenta creada!',
+        showConfirmButton: false,
+        timer: 1500
+      });
       dispatch(setAccountInformation(resAccount.data));
       dispatch(onLogout());
       window.location = "/";
     } catch (error) {
       dispatch(onLogout());
+      Swal.fire(
+        'Usuario duplicado',
+        'Intente nuevamente con otro mail',
+        'error'
+      );
     }
   };
 

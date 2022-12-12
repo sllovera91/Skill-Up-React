@@ -126,7 +126,7 @@ export const CargaSaldo = () => {
             <input
               onChange={handleInput}
               className=" border border-1 border-secondary opacity-50  rounded-1"
-              type="text"
+              type="number"
               name="amount"
             />
           </div>
