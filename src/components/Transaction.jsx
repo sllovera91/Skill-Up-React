@@ -5,7 +5,7 @@ import { truncateString } from '../helper/truncateString';
 export const Transaction = ({ concept, amount, date, type }) => {
   return (
     <tr>
-      <td scope="row text-break">{truncateString(concept)}</td>
+      <td scope="row text-break">{truncateString(concept) || "Carga rapida"}</td>
     <td>
       ${amount}
       </td>

@@ -77,11 +77,13 @@ export const useAuth = () => {
         icon: 'success',
         title: 'Cuenta creada!',
         showConfirmButton: false,
-        timer: 1500
+        timer: 2000
       });
       dispatch(setAccountInformation(resAccount.data));
       dispatch(onLogout());
-      window.location = "/";
+      setTimeout(() => {
+        window.location = "/";
+      }, 2100);
     } catch (error) {
       dispatch(onLogout());
       Swal.fire(

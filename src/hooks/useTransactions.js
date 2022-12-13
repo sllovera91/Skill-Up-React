@@ -1,18 +1,15 @@
 /* eslint-disable comma-dangle */
-import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Swal from "sweetalert2";
 import alkemyApi from "../api/login";
-import { getReceptorName, searchuser } from "../helper/helper";
-import { setTransactions, setPage } from "../redux/slices/transactions.slice";
+import { getReceptorName, searchUser, searchuser } from "../helper/helper";
+import { setTransactions, setPage, setLoadingOn, setLoadingOff } from "../redux/slices/transactions.slice";
 import { setBalance } from "../redux/slices/user.slice";
 export const useTransactions = () => {
   const transactions = useSelector((state) => state.transactions);
   const user = useSelector((state) => state.user.user);
   const { balance } = useSelector((state) => state.user.acquisition);
   const dispatch = useDispatch();
-  const [receptorIdUser, setReceptorIdUser] = useState(null);
-  const [receptorName, setReceptorName] = useState(null);
 
   const token = localStorage.getItem("token");
   const Autorizacion = {
@@ -77,44 +74,41 @@ export const useTransactions = () => {
     }
   };
   const createTransaction = async ({ receptorId, description, amount }) => {
-    const searchResult = Promise.resolve(searchuser(receptorId, Autorizacion));
-    searchResult.then((data) => setReceptorIdUser(data.userId));
-    if (receptorIdUser) {
-      getReceptorName(receptorIdUser, Autorizacion).then((data) =>
-        setReceptorName(data.first_name)
-      );
-    }
+    dispatch(setLoadingOn());
     try {
+      const { userId } = await searchUser(receptorId, Autorizacion);
+      const { first_name } = await getReceptorName(userId, Autorizacion);
+      dispatch(setLoadingOff());
       Swal.fire({
-        title: "Estas seguro?",
-        text: `Estas enviando a ${receptorName} el dinero`,
-        icon: "warning",
+        html: `<h4>Estas seguro que deseas enviar <span style="color:green;font-size:24px;">$${amount}</span> a <span style="color:blue;font-size:24px;text-transform:capitalize;">${first_name}</span>?</h4>`,
+        icon: "info",
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
         // eslint-disable-next-line comma-dangle
         confirmButtonText: "Si, envialo!",
-      }).then((result) => {
+      }).then(async (result) => {
         if (result.isConfirmed) {
+          const resPost = await alkemyApi.post(
+            `/accounts/${receptorId}`,
+            {
+              type: "payment",
+              concept: description,
+              // eslint-disable-next-line comma-dangle
+              amount: Number(amount),
+            },
+            Autorizacion
+            );
+          console.log(resPost.data);
           Swal.fire(
             "Enviado!",
             "La transaccion fue realizada satisfactoriamente",
             "success"
-          );
-        }
-      });
-      const resPost = await alkemyApi.post(
-        `/accounts/${receptorId}`,
-        {
-          type: "payment",
-          concept: description,
-          // eslint-disable-next-line comma-dangle
-          amount: Number(amount),
-        },
-        Autorizacion
-      );
-      console.log(resPost.data);
+            );
+          }
+        });
     } catch (error) {
+      dispatch(setLoadingOff());
       Swal.fire({
         icon: "error",
         title: "Oops...",
