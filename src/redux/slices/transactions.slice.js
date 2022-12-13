@@ -2,7 +2,8 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const transactionsSliceEmptyState = {
   transactions: [],
-  nextPage: false
+  nextPage: false,
+  loading: false
 };
 
 const transactionsSlice = createSlice({
@@ -23,9 +24,21 @@ const transactionsSlice = createSlice({
         ...state,
         nextPage: action.payload
       };
+    },
+    setLoadingOn: (state) => {
+      return {
+        ...state,
+        loading: true
+      };
+    },
+    setLoadingOff: (state) => {
+      return {
+        ...state,
+        loading: false
+      };
     }
   }
 });
 
-export const { setTransactions, setPage } = transactionsSlice.actions;
+export const { setTransactions, setPage, setLoadingOff, setLoadingOn } = transactionsSlice.actions;
 export default transactionsSlice.reducer;
