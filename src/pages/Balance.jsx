@@ -39,7 +39,7 @@ export const Balance = () => {
             <div className="card">
               <div className="card-body text-center">
                 <div className="card-title mt-2 mb-1"></div>
-                <span className="fs-2 mb-3 font-weight-bold">Balance</span>
+                <span className="fs-2 mb-3 font-weight-bold">Saldo</span>
                 <p className="mb-3 mt-3">$ {balance}</p>
               </div>
             </div>
